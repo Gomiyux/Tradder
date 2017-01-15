@@ -1,31 +1,20 @@
-Sun Jan 15 19:28:33 CET 2017 : Servidor de red Apache Derby: Se ha iniciado 10.11.1.2 - (1629631) y está listo para aceptar las conexiones en el puerto 1527
+Sun Jan 15 21:38:30 CET 2017 : Servidor de red Apache Derby: Se ha iniciado 10.11.1.2 - (1629631) y está listo para aceptar las conexiones en el puerto 1527
 ----------------------------------------------------------------
-Sun Jan 15 19:28:33 CET 2017:
- Iniciando instancia a816c00e-0159-a363-5720-ffffe3f8dbf7 de Derby, versión The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): 
-en el directorio de base de datos C:\Users\SebaL\OneDrive\Documentos\NetBeansProjects\COQUEBA\tradderDB con el cargador de clases sun.misc.Launcher$AppClassLoader@6f94fa3e
-Cargado desde file:/C:/Program%20Files/Java/jdk1.8.0_112/db/lib/derby.jar
+Sun Jan 15 21:38:30 CET 2017:
+ Iniciando instancia a816c00e-0159-a3da-4fe7-00007eea4356 de Derby, versión The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): 
+en el directorio de base de datos C:\Users\carlo\Desktop\COQUEBA\tradderDB con el cargador de clases sun.misc.Launcher$AppClassLoader@5b3d9c02
+Cargado desde file:/C:/Program%20Files/Java/jdk1.8.0_101/db/lib/derby.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_112-b15
-user.dir=C:\Program Files\Java\jdk1.8.0_112\db
-os.name=Windows 10
+java.runtime.version=1.7.0_79-b15
+user.dir=C:\Program Files\Java\jdk1.8.0_101\db
+os.name=Windows 8.1
 os.arch=amd64
-os.version=10.0
-derby.system.home=C:\Users\SebaL\OneDrive\Documentos\NetBeansProjects\COQUEBA
+os.version=6.3
+derby.system.home=C:\Users\carlo\Desktop\COQUEBA
 Cargador de clases de base de datos iniciado - derby.database.classpath=''
 ----------------------------------------------------------------
-Sun Jan 15 19:28:34 CET 2017:
-Cerrando la instancia a816c00e-0159-a363-5720-ffffe3f8dbf7 en el directorio de base de datos C:\Users\SebaL\OneDrive\Documentos\NetBeansProjects\COQUEBA\tradderDB con cargador de clases sun.misc.Launcher$AppClassLoader@6f94fa3e
-Sun Jan 15 19:28:34 CET 2017 Thread[DRDAConnThread_2,5,main] (DATABASE = tradderDB), (DRDAID = {2}), Cierre de la base de datos 'tradderDB'.
+Sun Jan 15 21:39:55 CET 2017: cerrando motor de Derby
 ----------------------------------------------------------------
-Sun Jan 15 19:28:36 CET 2017:
- Iniciando instancia a65c80ac-0159-a363-5720-ffffe3f8dbf7 de Derby, versión The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): 
-en el directorio de base de datos C:\Users\SebaL\OneDrive\Documentos\NetBeansProjects\COQUEBA\tradderDB con el cargador de clases sun.misc.Launcher$AppClassLoader@6f94fa3e
-Cargado desde file:/C:/Program%20Files/Java/jdk1.8.0_112/db/lib/derby.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_112-b15
-user.dir=C:\Program Files\Java\jdk1.8.0_112\db
-os.name=Windows 10
-os.arch=amd64
-os.version=10.0
-derby.system.home=C:\Users\SebaL\OneDrive\Documentos\NetBeansProjects\COQUEBA
-Cargador de clases de base de datos iniciado - derby.database.classpath=''
+Sun Jan 15 21:39:55 CET 2017:
+Cerrando la instancia a816c00e-0159-a3da-4fe7-00007eea4356 en el directorio de base de datos C:\Users\carlo\Desktop\COQUEBA\tradderDB con cargador de clases sun.misc.Launcher$AppClassLoader@5b3d9c02
+----------------------------------------------------------------

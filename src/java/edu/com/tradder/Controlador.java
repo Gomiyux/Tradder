@@ -94,6 +94,7 @@ public class Controlador extends HttpServlet {
                         session.setAttribute("id", u.getId());
                         session.setAttribute("user", u.getEmail());
                         request.setAttribute("msg", "Login correcto.");
+                        session.setAttribute("usuario", u);
                     } else {
                         request.setAttribute("msg", "Usuario o Password incorrecto.");
                     }
@@ -144,16 +145,16 @@ public class Controlador extends HttpServlet {
                 }
                 vista = "/index.jsp";
                 break;
-            case "/privado":
-                // 
-                if (session.getAttribute("user")!=null)
-                    vista = "/WEB-INF/privado.jsp";
-                else { 
-                    request.setAttribute("msg", "Acceso denegado");
-                    vista = "/index.jsp";
-                }
+                
+            case "/articulos":
+                     vista= "/ver_articulos.jsp";
                 break;
+            case "/interes":
+                     vista= "/interes.jsp";
+                break;   
+                
             case "/logout":
+                
                 //
                 session.removeAttribute("id");
                 session.removeAttribute("user");
@@ -174,14 +175,14 @@ public class Controlador extends HttpServlet {
                 Articulos a;
                 
                 String cp = request.getParameter("cp");
-                String year = request.getParameter("año");
-                String name = request.getParameter("nombre");
+                String year = request.getParameter("ano");
+                String name = request.getParameter("name");
                 String pvp = request.getParameter("precio");
                 String categoria = request.getParameter("optionsRadios");
                 String estado = request.getParameter("optionsRadios2");
                 String descripcion = request.getParameter("descripcion");
                  
-                if (cp != null && year != null && name != null && pvp != null) {
+                //if (cp != null && year != null && name != null && pvp != null) {
                     try {
                         a = new Articulos();
                         a.setAño(year);
@@ -191,30 +192,23 @@ public class Controlador extends HttpServlet {
                         a.setDescripcion(descripcion);
                         a.setNombre(name);
                         a.setPrecio(pvp);
+                        a.setPropietario((Usuarios) request.getSession().getAttribute("usuario"));
+                        //.setPropietario((Usuarios) session.getAttribute("id"));
                         persist(a);
                         
-                        final Part filePart = request.getPart("file");
+                        final Part filePart = request.getPart("file1");
                         if (filePart != null) {
 
+                            /*
                             String nombre = filePart.getName();
                             Long tamano = filePart.getSize();
                             String file = filePart.getSubmittedFileName();
-                            
-                            String relativePathFolder = "img";
-                            String absolutePathFolder = getServletContext().getRealPath(relativePathFolder);
-
-                            
-                            /*
-                            File folder = new File(absolutePathFolder);
-                            if (folder.exists()) {
-                                //System.err.println("Error : " + absolutePathFolder + " existe");
-                            } else {
-                                folder.mkdir();
-                            }                            
                             */
                             
+                            String relativePathFolder = "../../web/assets/img_articulos";
+                            String absolutePathFolder = getServletContext().getRealPath(relativePathFolder);                           
                             
-                            File f = new File("/COQUEBA/assets/img_articulos"+ File.separator + nombre+year+cp+".jpg");
+                            File f = new File(absolutePathFolder + File.separator + name+year+cp+".jpg");
                             
                             OutputStream p = new FileOutputStream(f);
                             InputStream filecontent;
@@ -236,13 +230,13 @@ public class Controlador extends HttpServlet {
                         System.out.println("Error: Imposible persistir  articulo: " + name);
                         msg = "<p class='error'>Error: Artículo " + name + " no creado</p>";
                     }
-                } else {
+                /*} else {
                     System.out.println("Error: datos incorrectos");
                     msg = "<p class=\"error\">Error: Faltan datos</p>";
-                }
+                }*/
 
                
-
+                    
                 vista = "/publicar.jsp";
                 break;        
                 

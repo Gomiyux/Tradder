@@ -86,6 +86,7 @@
                         <c:when test="${sessionScope.user==null}">
                     <li  >
                         <a  href="/COQUEBA/controlador/alta" ><span class="fa-3x glyphicon glyphicon-pencil" aria-hidden="true"></span>  Registrarse</a>
+                        <a href="../src/java/edu/com/tradder/Controlador.java"></a>
                     </li> 
                         </c:when>
                         <c:otherwise>
@@ -116,9 +117,12 @@
                  <!-- /. ROW  -->
                  <hr />
                 
+                  <!-- SECTION PRINCIPAL -->
+                 
+                 
                  <section  style="margin-bottom: 100px; margin-top: 1%;">     
                    
-                     <form id="f"  onsubmit="" enctype="multipart/form-data" action="/COQUEBA/controlador/publicar" style="margin-left: 5%;">
+                     <form id="f"  onsubmit="" enctype="multipart/form-data" method="POST" action="/COQUEBA/controlador/validar_articulo" style="margin-left: 5%;">
                      <section class="container-fluid">                  
                        <fieldset class="col-sm-6">
 
@@ -136,7 +140,7 @@
 
                               <div class="form-group input-group">                   
                               <span class="glyphicon glyphicon-calendar input-group-addon"></span>
-                              <input style="margin-top: 2px;" type="text" pattern="[0-9]{4}" class="form-control" placeholder="Año de compra" name="año"></div><br>
+                              <input style="margin-top: 2px;" type="text" pattern="[0-9]{4}" class="form-control" placeholder="Año de compra" name="ano"></div><br>
                               
                               <div class="form-group">
                                   <label>Descripción del artículo</label>
@@ -188,8 +192,8 @@
 
                               <div class="form-group">
                                 <label>Imagen del artículo</label>
-                                <input type="hidden" name="MAX_FILE_SIZE" value="1000000">
-                                <input name="file" type="file" id="adjuntar" size="12">
+                                
+                                <input name="file1" type="file" id="adjuntar" size="12">
                               </div>
 
                               </select><br><br>                                                         

@@ -217,7 +217,7 @@
 }(jQuery));
 
 
-            /*====================================
+/*====================================
     FORMULARIO
  ======================================*/
 
@@ -259,6 +259,6 @@ function rangomaxmin(){
     //console.log(document.getElementById("rango").value);   
     var rango= document.getElementById("rango").value;
     var rangos= rango.split(",");
-    document.getElementById("min").innerHTML=("€ " + rangos[0]);
-    document.getElementById("max").innerHTML=("€ " + rangos[1]);
+    document.getElementById("min").innerHTML=( rangos[0]+"€");
+    document.getElementById("max").innerHTML=(rangos[1]+ "€");
 }

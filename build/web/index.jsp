@@ -31,7 +31,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="Home.html">Tradder</a> 
+                <a class="navbar-brand" href="Home.html" >Tradder</a> 
             </div>
 
             <c:if test="${sessionScope.user==null}">
@@ -114,6 +114,8 @@
                  <!-- /. ROW  -->
                  <hr />
                 
+                  <!-- SECTION PRINCIPAL -->
+                 
                  <div class="container-fluid row" style="width: 100%;">
                  <div class="col-md-3" style="margin-left: -3%;"></div>
                  <div class="col-md-7 text-center">

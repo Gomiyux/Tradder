@@ -98,9 +98,6 @@ public class Articulos implements Serializable {
         this.propietario = propietario;
     }
 
-    
-    
-    
     public Long getId() {
         return id;
     }

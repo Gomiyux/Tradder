@@ -115,6 +115,8 @@
                  <!-- /. ROW  -->
                  <hr />
                 
+                  <!-- SECTION PRINCIPAL -->
+                 
                  <section  style="margin-bottom: 100px; margin-top: 1%;">     
                    
                      <form id="f"  onsubmit="return validar();" action="/COQUEBA/controlador/guardar" style="margin-left: 5%;">

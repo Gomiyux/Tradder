@@ -20,8 +20,10 @@
     <link href="/COQUEBA/assets/css/custom.css" rel="stylesheet" />
      <!-- GOOGLE FONTS-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+   
+   
 </head>
-<body>
+    <body>  
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -170,74 +172,53 @@
             
             <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner">
-
-                <div class="item active"> 
-                  <div class="col-sm-4">
-                    <div class="product-image-wrapper">
-                        <div class="productinfo text-center">
-                          <img style="width:420px;height:320px;" src="/COQUEBA/assets/img/gtx1070.png" alt="" />
-                          <h2>$56</h2>
-                          <p>GTX 1070</p>                         
-                        </div>
-                    </div>
+                <div class="item active">   
+                  <c:choose>
+                        <c:when test="${!empty requestScope.Ultimos_articulos1}">
+                            <c:forEach var="art" items="${requestScope.Ultimos_articulos1}">
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="productinfo text-center">
+                                            <img style="width:420px;height:320px;" src="/COQUEBA/assets/img_articulos/${art.nombre}${art.año}${art.cp}.jpg" alt="" />
+                                            <h2>${art.precio}€</h2>
+                                            <p>${art.nombre}</p>   
+                                            <p>${art.id}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                              <p>No hay Artículos</p>
+                        </c:otherwise>                
+                  </c:choose>
                   </div>
-                  <div class="col-sm-4">
-                    <div class="product-image-wrapper">
-                        <div class="productinfo text-center">
-                          <img style="width:420px;height:320px;" src="/COQUEBA/assets/img/titan.png" alt="" />
-                          <h2>$56</h2>
-                          <p>TITAN</p>
-                        </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="product-image-wrapper">
-                        <div class="productinfo text-center">
-                          <img style="width:420px;height:320px;" src="/COQUEBA/assets/img/i7.png" alt="" />
-                          <h2>$56</h2>
-                          <p>Intel i7-6700K</p>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="item">  
-                  <div class="col-sm-4">
-                    <div class="product-image-wrapper">
-                        <div class="productinfo text-center">
-                          <img style="width:420px;height:320px;" src="/COQUEBA/assets/img/gtx1070.png" alt="" />
-                          <h2>$56</h2>
-                          <p>Easy Polo Black Edition</p>
-                        </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="product-image-wrapper">
-                        <div class="productinfo text-center">
-                          <img style="width:420px;height:320px;" src="/COQUEBA/assets/img/gtx1070.png" alt="" />
-                          <h2>$56</h2>
-                          <p>Easy Polo Black Edition</p>
-                        </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="product-image-wrapper">
-                        <div class="productinfo text-center">
-                          <img style="width:420px;height:320px;" src="/COQUEBA/assets/img/gtx1070.png" alt="" />
-                          <h2>$56</h2>
-                          <p>Easy Polo Black Edition</p>
-                        </div>
-                    </div>
-                  </div>
-                </div>
+                  <div class="item">   
+                  <c:choose>
+                        <c:when test="${!empty requestScope.Ultimos_articulos2}">
+                            <c:forEach var="art" items="${requestScope.Ultimos_articulos2}">
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="productinfo text-center">
+                                            <img style="width:420px;height:320px;" src="/COQUEBA/assets/img_articulos/${art.nombre}${art.año}${art.cp}.jpg" alt="" />
+                                            <h2>${art.precio}€</h2>
+                                            <p>${art.nombre}</p>   
+                                            <p>${art.id}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                              <p>No hay Artículos</p>
+                        </c:otherwise>                
+                  </c:choose>            
+                   </div>               
+                
               </div>
                 <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
-                  <span class="glyphicon glyphicon-chevron-left btn-lg btn-danger" aria-hidden="true"></span>
-                </a>   
-                
-                 
-
-            </div>
+                  <span class="glyphicon glyphicon-chevron-left btn-lg btn-danger" aria-hidden="true"></span>   
+             </div>
           </div><!--/recommended_items-->
 
 

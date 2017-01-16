@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.security.MessageDigest;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -64,6 +65,27 @@ public class Controlador extends HttpServlet {
         switch (accion) {
             case "/home":
                 // Página Principal
+                TypedQuery<Articulos> query2 = em.createNamedQuery("Articulos.findAll", Articulos.class);
+                List<Articulos> result2 = query2.getResultList();
+                List<Articulos> aux1 = new ArrayList<Articulos>();
+                List<Articulos> aux2 = new ArrayList<Articulos>();
+                int restantes=result2.size();
+                int z=0;
+                
+                while(restantes!=0 && z!=3){
+                    aux1.add(result2.get(restantes-1));
+                    restantes--;
+                    z++;
+                }
+                
+                while(restantes!=0 && z!=6){
+                    aux2.add(result2.get(restantes-1));
+                    restantes--;
+                    z++;
+                }
+                
+                request.setAttribute("Ultimos_articulos1", aux1);
+                request.setAttribute("Ultimos_articulos2", aux2);
                 vista = "/index.jsp";
                 break;
             case "/login":

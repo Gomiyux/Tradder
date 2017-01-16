@@ -12,3 +12,8 @@ os.arch=amd64
 os.version=6.3
 derby.system.home=C:\Users\carlo\Desktop\COQUEBA
 Cargador de clases de base de datos iniciado - derby.database.classpath=''
+----------------------------------------------------------------
+Mon Jan 16 14:11:50 CET 2017: cerrando motor de Derby
+----------------------------------------------------------------
+Mon Jan 16 14:11:50 CET 2017:
+Cerrando la instancia a816c00e-0159-a6e2-aefa-00007eea4356 en el directorio de base de datos C:\Users\carlo\Desktop\COQUEBA\tradderDB con cargador de clases sun.misc.Launcher$AppClassLoader@5b3d9c02

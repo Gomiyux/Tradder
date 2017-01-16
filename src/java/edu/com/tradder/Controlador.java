@@ -5,7 +5,11 @@
  */
 package edu.com.tradder;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.security.MessageDigest;
 import java.util.List;
@@ -17,16 +21,20 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author SebaL
  */
+
+@MultipartConfig
 @WebServlet(name = "Controlador", urlPatterns = {"/controlador/*"})
 public class Controlador extends HttpServlet {
     @PersistenceContext(unitName = "tradderPU")
@@ -50,6 +58,8 @@ public class Controlador extends HttpServlet {
         accion = request.getPathInfo();
         String vista;
         HttpSession session = request.getSession();
+        
+        
 
         switch (accion) {
             case "/home":
@@ -154,6 +164,88 @@ public class Controlador extends HttpServlet {
                 
                 vista="/publicar.jsp";
                 break;
+            case "/validar_articulo":
+                
+                TypedQuery<Articulos> query;
+                List<Articulos> lr;
+                String msg = "";
+                String idf;
+                List<Articulos> lid;
+                Articulos a;
+                
+                String cp = request.getParameter("cp");
+                String year = request.getParameter("año");
+                String name = request.getParameter("nombre");
+                String pvp = request.getParameter("precio");
+                String categoria = request.getParameter("optionsRadios");
+                String estado = request.getParameter("optionsRadios2");
+                String descripcion = request.getParameter("descripcion");
+                 
+                if (cp != null && year != null && name != null && pvp != null) {
+                    try {
+                        a = new Articulos();
+                        a.setAño(year);
+                        a.setCp(cp);
+                        a.setCategoria(categoria);
+                        a.setEstado(estado);
+                        a.setDescripcion(descripcion);
+                        a.setNombre(name);
+                        a.setPrecio(pvp);
+                        persist(a);
+                        
+                        final Part filePart = request.getPart("file");
+                        if (filePart != null) {
+
+                            String nombre = filePart.getName();
+                            Long tamano = filePart.getSize();
+                            String file = filePart.getSubmittedFileName();
+                            
+                            String relativePathFolder = "img";
+                            String absolutePathFolder = getServletContext().getRealPath(relativePathFolder);
+
+                            
+                            /*
+                            File folder = new File(absolutePathFolder);
+                            if (folder.exists()) {
+                                //System.err.println("Error : " + absolutePathFolder + " existe");
+                            } else {
+                                folder.mkdir();
+                            }                            
+                            */
+                            
+                            
+                            File f = new File("/COQUEBA/assets/img_articulos"+ File.separator + nombre+year+cp+".jpg");
+                            
+                            OutputStream p = new FileOutputStream(f);
+                            InputStream filecontent;
+                            filecontent = filePart.getInputStream();
+                            
+                            int read = 0;
+                            final byte[] bytes = new byte[1024];
+                            while ((read = filecontent.read(bytes)) != -1) {
+                                p.write(bytes, 0, read);
+                            }
+
+                            p.close();
+                            filecontent.close();
+                            
+                        }
+
+                    } catch (Exception ex) {
+                        System.out.println(ex);
+                        System.out.println("Error: Imposible persistir  articulo: " + name);
+                        msg = "<p class='error'>Error: Artículo " + name + " no creado</p>";
+                    }
+                } else {
+                    System.out.println("Error: datos incorrectos");
+                    msg = "<p class=\"error\">Error: Faltan datos</p>";
+                }
+
+               
+
+                vista = "/publicar.jsp";
+                break;        
+                
             // Otros case
             default:
                 vista = "/index.jsp";

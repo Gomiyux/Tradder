@@ -132,7 +132,7 @@
 
                               <div class="form-group input-group">                   
                               <span class="glyphicon glyphicon-euro input-group-addon"></span>
-                              <input style="margin-top: 2px;" type="text" class="form-control" id="precio" placeholder="Precio" pattern="[0-9][,]" title="Formato incorrecto" name="precio"></div>
+                              <input style="margin-top: 2px;" type="text" class="form-control" id="precio" placeholder="Precio" pattern="[0-9]" title="Formato incorrecto" name="precio"></div>
 
                               <div class="form-group input-group">                   
                               <span class="glyphicon glyphicon-calendar input-group-addon"></span>
@@ -140,7 +140,7 @@
                               
                               <div class="form-group">
                                   <label>Descripción del artículo</label>
-                                  <textarea placeholder="Descripción" class="form-control" rows="3"></textarea>
+                                  <textarea placeholder="Descripción" class="form-control" rows="3" name="descripcion"></textarea>
                               </div>
 
                               <div class="form-group">
@@ -189,7 +189,7 @@
                               <div class="form-group">
                                 <label>Imagen del artículo</label>
                                 <input type="hidden" name="MAX_FILE_SIZE" value="1000000">
-                                <input name="adjuntar" type="file" id="adjuntar" size="12">
+                                <input name="file" type="file" id="adjuntar" size="12">
                               </div>
 
                               </select><br><br>                                                         

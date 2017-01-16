@@ -147,7 +147,11 @@ public class Controlador extends HttpServlet {
                 break;
                 
             case "/articulos":
+                     TypedQuery<Articulos> query = em.createNamedQuery("Articulos.findAll", Articulos.class);
+                     List<Articulos> result = query.getResultList();
+                     request.setAttribute("articulos", result);
                      vista= "/ver_articulos.jsp";
+                     
                 break;
             case "/interes":
                      vista= "/interes.jsp";
@@ -167,11 +171,8 @@ public class Controlador extends HttpServlet {
                 break;
             case "/validar_articulo":
                 
-                TypedQuery<Articulos> query;
-                List<Articulos> lr;
-                String msg = "";
-                String idf;
-                List<Articulos> lid;
+                
+                
                 Articulos a;
                 
                 String cp = request.getParameter("cp");
@@ -228,7 +229,7 @@ public class Controlador extends HttpServlet {
                     } catch (Exception ex) {
                         System.out.println(ex);
                         System.out.println("Error: Imposible persistir  articulo: " + name);
-                        msg = "<p class='error'>Error: Artículo " + name + " no creado</p>";
+                        String msg = "<p class='error'>Error: Artículo " + name + " no creado</p>";
                     }
                 /*} else {
                     System.out.println("Error: datos incorrectos");

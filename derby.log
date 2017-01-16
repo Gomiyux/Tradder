@@ -1,8 +1,8 @@
-Mon Jan 16 17:10:13 CET 2017 : Servidor de red Apache Derby: Se ha iniciado 10.11.1.2 - (1629631) y está listo para aceptar las conexiones en el puerto 1527
+Mon Jan 16 19:25:39 CET 2017 : Servidor de red Apache Derby: Se ha iniciado 10.11.1.2 - (1629631) y está listo para aceptar las conexiones en el puerto 1527
 ----------------------------------------------------------------
-Mon Jan 16 17:10:13 CET 2017:
- Iniciando instancia a816c00e-0159-a80b-0c28-00007eea4356 de Derby, versión The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): 
-en el directorio de base de datos C:\Users\carlo\Desktop\COQUEBA\tradderDB con el cargador de clases sun.misc.Launcher$AppClassLoader@29cd761a
+Mon Jan 16 19:25:39 CET 2017:
+ Iniciando instancia a816c00e-0159-a887-08bb-00007eea4356 de Derby, versión The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): 
+en el directorio de base de datos C:\Users\carlo\Desktop\COQUEBA\tradderDB con el cargador de clases sun.misc.Launcher$AppClassLoader@4069b25f
 Cargado desde file:/C:/Program%20Files/Java/jdk1.8.0_101/db/lib/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.7.0_79-b15
@@ -13,8 +13,8 @@ os.version=6.3
 derby.system.home=C:\Users\carlo\Desktop\COQUEBA
 Cargador de clases de base de datos iniciado - derby.database.classpath=''
 ----------------------------------------------------------------
-Mon Jan 16 18:53:29 CET 2017: cerrando motor de Derby
+Mon Jan 16 19:35:01 CET 2017: cerrando motor de Derby
 ----------------------------------------------------------------
-Mon Jan 16 18:53:29 CET 2017:
-Cerrando la instancia a816c00e-0159-a80b-0c28-00007eea4356 en el directorio de base de datos C:\Users\carlo\Desktop\COQUEBA\tradderDB con cargador de clases sun.misc.Launcher$AppClassLoader@29cd761a
+Mon Jan 16 19:35:01 CET 2017:
+Cerrando la instancia a816c00e-0159-a887-08bb-00007eea4356 en el directorio de base de datos C:\Users\carlo\Desktop\COQUEBA\tradderDB con cargador de clases sun.misc.Launcher$AppClassLoader@4069b25f
 ----------------------------------------------------------------

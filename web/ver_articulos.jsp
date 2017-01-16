@@ -162,65 +162,31 @@
               </section>         
 
               <section id="recommended-item-carousel" class="carousel slide" data-ride="carousel" id="articulos"> <!--ARTICULOS-->
-                  <div class="item active"> 
-                    <div class="col-sm-4">
-                      <div class="product-image-wrapper">
-                          <div class="productinfo text-center">
-                            <img style="width:420px;height:320px;" src="assets/img/gtx1070.png" alt="" />
-                            <h2>$56</h2>
-                            <p>GTX 1070</p>                         
-                          </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-4">
-                      <div class="product-image-wrapper">
-                          <div class="productinfo text-center">
-                            <img style="width:420px;height:320px;" src="assets/img/titan.png" alt="" />
-                            <h2>$56</h2>
-                            <p>TITAN</p>
-                          </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-4">
-                      <div class="product-image-wrapper">
-                          <div class="productinfo text-center">
-                            <img style="width:420px;height:320px;" src="assets/img/i7.png" alt="" />
-                            <h2>$56</h2>
-                            <p>Intel i7-6700K</p>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
 
-                  <div class="item">  
-                    <div class="col-sm-4">
-                      <div class="product-image-wrapper">
-                          <div class="productinfo text-center">
-                            <img style="width:420px;height:320px;" src="assets/img/gtx1070.png" alt="" />
-                            <h2>$56</h2>
-                            <p>Easy Polo Black Edition</p>
-                          </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-4">
-                      <div class="product-image-wrapper">
-                          <div class="productinfo text-center">
-                            <img style="width:420px;height:320px;" src="assets/img/gtx1070.png" alt="" />
-                            <h2>$56</h2>
-                            <p>Easy Polo Black Edition</p>
-                          </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-4">
-                      <div class="product-image-wrapper">
-                          <div class="productinfo text-center">
-                            <img style="width:420px;height:320px;" src="assets/img/gtx1070.png" alt="" />
-                            <h2>$56</h2>
-                            <p>Easy Polo Black Edition</p>
-                          </div>
-                      </div>
-                    </div>
-                  </div>      
+                    <c:choose>
+                        <c:when test="${!empty requestScope.articulos}">
+                                <c:forEach var="art" items="${requestScope.articulos}">
+
+                                    <div class="col-sm-4">
+                                        <div class="product-image-wrapper">
+                                            <div class="productinfo text-center">
+                                                <img style="width:420px;height:320px;" src="/COQUEBA/assets/img_articulos/${art.nombre}${art.año}${art.cp}.jpg" alt="" />
+                                                <h2>${art.precio}€</h2>
+                                                <p>${art.nombre}</p>   
+                                                <p>${art.id}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </c:forEach>
+                            
+                        </c:when>
+                        <c:otherwise>
+                            <p>No hay Artículos</p>
+                        </c:otherwise>
+                    </c:choose>
+                  
+                       
               </section>
           </section><!--/recommended_items-->
 

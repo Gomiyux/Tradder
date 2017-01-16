@@ -32,26 +32,34 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="Home.html">SebaShop</a> 
+                <a class="navbar-brand" href="Home.html">Tradder</a> 
             </div>
 
-            <c:if test="${requestScope.msg==null}">
-                <div class="content-fluid" id="login">
-                    <form class="row" role="form" action="/controlador/login">
-                      <div class="col-md-3" style="color: black; float:right ;display: inline; margin-top: 1%;">
+            <c:if test="${sessionScope.user==null}">
+                
+                <div class="content-fluid " id="login">
+                                       
+                    <form class="row" role="form"  action="/COQUEBA/controlador/validar">
+                      <div class="col-md-6"></div>  
+                      <div class="col-md-4" style="color: black ;display: inline; margin-top: 1%;">
                         <i style="color: white;" class="glyphicon glyphicon-user"></i>
-                        <input type="text" placeholder="Usuario"/>&nbsp
+                        <input type="text" name="email" placeholder="Usuario"/>&nbsp
                         <i style="color: white;" class="glyphicon glyphicon-lock"></i>
-                        <input type="text" placeholder="Contraseña"/>&nbsp
-                        <input style="margin-top: -3px;" type="submit" class="btn btn-sm btn-danger" value="Login">      
+                        <input type="password" name="password_login" placeholder="Contraseña"/>&nbsp
+                        <input style="margin-top: -3px;" type="submit" class="btn btn-sm btn-warning" value="Login">      
                       </div>
                     </form>
                 </div>                
             </c:if> 
-            <c:if test="${requestScope.msg!=null}">
-                <div class="content-fluid" id="usuario">
-                    <p style=" color: #d9534f; float: right; margin-right: 2%;">${sessionScope.user}</p>
-                    <button style="margin-top: -3px;" class="btn btn-sm btn-danger" onclick="windows.location.href='/controlador/logout'">Logout</button> 
+            <c:if test="${sessionScope.user!=null}">
+                <div class="content" id="usuario">
+                    <form role="form" action="/COQUEBA/controlador/logout">                      
+                        <div class="text-right"  style="display:inline; width: auto; float:right; margin-top:-21px; margin-right: 20px;">   
+                                <p style=" color: white; margin-bottom:-1px;">${sessionScope.user}</p>
+                                <input type="submit" style="display:inline; " class="btn btn-sm btn-danger " value="Logout">
+                        </div>
+                            
+                    </form>
                 </div>
             </c:if>
             
@@ -67,7 +75,7 @@
 					</li>
                     
                     <li>
-                        <a   href="Home.html" ><span class="fa-3x glyphicon glyphicon-home" aria-hidden="true"></span>  Home</a>
+                        <a   href="/COQUEBA/controlador/home" ><span class="fa-3x glyphicon glyphicon-home" aria-hidden="true"></span>  Home</a>
                     </li> 
                     <li>
                         <a  href="/COQUEBA/controlador/articulos" ><span class="fa-3x glyphicon glyphicon-th-large" aria-hidden="true"></span>  Ver Artículos</a>
@@ -100,7 +108,7 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Home</h2>   
+                     <h2>Registrarse</h2>   
                        
                     </div>
                 </div>

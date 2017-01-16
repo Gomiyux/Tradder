@@ -1,8 +1,9 @@
 <%-- 
     Document   : alta
     Created on : 15-ene-2017, 20:19:11
-    Author     : SebaL
+
 --%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -84,12 +85,12 @@
                     <c:choose>	
                         <c:when test="${sessionScope.user==null}">
                     <li  >
-                        <a style="background:#d9534f;" href="/COQUEBA/controlador/alta" ><span class="fa-3x glyphicon glyphicon-pencil" aria-hidden="true"></span>  Registrarse</a>
+                        <a  href="/COQUEBA/controlador/alta" ><span class="fa-3x glyphicon glyphicon-pencil" aria-hidden="true"></span>  Registrarse</a>
                     </li> 
                         </c:when>
                         <c:otherwise>
                     <li>
-                        <a  href="/COQUEBA/controlador/publicar" ><span class="fa-3x glyphicon glyphicon-plus" aria-hidden="true"></span>  Publicar Artículo</a>
+                        <a  style="background:#d9534f;" href="/COQUEBA/controlador/publicar" ><span class="fa-3x glyphicon glyphicon-plus" aria-hidden="true"></span>  Publicar Artículo</a>
                     </li>
 						   <li  >
                         <a  href="/COQUEBA/controlador/interes" ><span class="fa-3x glyphicon glyphicon-heart" aria-hidden="true"></span>  Mis Articulos de Interés</a>
@@ -108,7 +109,7 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Registrarse</h2>   
+                     <h2>Publicar Nuevo Artículo</h2>   
                        
                     </div>
                 </div>
@@ -117,49 +118,81 @@
                 
                  <section  style="margin-bottom: 100px; margin-top: 1%;">     
                    
-                     <form id="f"  onsubmit="return validar();" action="/COQUEBA/controlador/guardar" style="margin-left: 5%;">
-                    <section class="container-fluid">                  
+                     <form id="f"  onsubmit="" enctype="multipart/form-data" action="/COQUEBA/controlador/publicar" style="margin-left: 5%;">
+                     <section class="container-fluid">                  
                        <fieldset class="col-sm-6">
-                              <div class="form-group input-group">                   
-                              <span class="input-group-addon">@</span>
-                              <input type="email" class="form-control" placeholder="E-mail" name="correo"></div><span  style="color: red;" id="spanClave"></span>
-
-                              <div class="form-group input-group" id="div_form_clave">                   
-                              <span class="glyphicon glyphicon-lock input-group-addon"></span>
-                              <input style="margin-top: 2px;" type="password" class="form-control" placeholder="Clave" name="password1"></div>
-
-                              <div class="form-group input-group">                   
-                              <span class="glyphicon glyphicon-lock input-group-addon"></span>
-                              <input style="margin-top: 2px;" type="password" class="form-control" placeholder="Repetir Clave" name="password2"></div><span style="color: red;" id="spanName"></span>
 
                               <div class="form-group input-group" id="div_form_nombre">                   
-                              <span class="glyphicon glyphicon-user input-group-addon"></span>
+                              <span class="glyphicon glyphicon-pencil input-group-addon"></span>
                               <input style="margin-top: 2px;" type="text" class="form-control" placeholder="Nombre" name="name"></div>
 
                               <div class="form-group input-group">                   
                               <span class="glyphicon glyphicon-map-marker input-group-addon"></span>
-                              <input style="margin-top: 2px;" type="text" class="form-control" placeholder="Dirección" name="direccion"></div>
-
-                              <div class="form-group input-group">                   
-                              <span class="glyphicon glyphicon-envelope input-group-addon"></span>
                               <input  style="margin-top: 2px;" class="form-control" placeholder="CP" id="cp" type="text" pattern="[0-9]{5}" title="Formato incorrecto" name="cp"></div>
 
                               <div class="form-group input-group">                   
-                              <span class="glyphicon glyphicon-phone input-group-addon"></span>
-                              <input style="margin-top: 2px;" type="text" class="form-control" id="telefono" placeholder="Teléfono" pattern="[0-9]{9}" title="Formato incorrecto" name="telefono"></div>
+                              <span class="glyphicon glyphicon-euro input-group-addon"></span>
+                              <input style="margin-top: 2px;" type="text" class="form-control" id="precio" placeholder="Precio" pattern="[0-9][,]" title="Formato incorrecto" name="precio"></div>
 
                               <div class="form-group input-group">                   
-                              <span class="glyphicon glyphicon-globe input-group-addon"></span>
-                              <input style="margin-top: 2px;" type="url" class="form-control" placeholder="Facebook" name="fb"></div><br>
+                              <span class="glyphicon glyphicon-calendar input-group-addon"></span>
+                              <input style="margin-top: 2px;" type="text" pattern="[0-9]{4}" class="form-control" placeholder="Año de compra" name="año"></div><br>
                               
-                              <br><br>                                                         
-                         </fieldset>
+                              <div class="form-group">
+                                  <label>Descripción del artículo</label>
+                                  <textarea placeholder="Descripción" class="form-control" rows="3"></textarea>
+                              </div>
 
-                         <fieldset  style="margin-left: 3%;" class="col-sm-5 text-center"> <!-- /. CAPTCHA  -->
-                            <img style="width:250px;height:100px;" src="/COQUEBA/assets/img/captcha.jpg" />
-                            <div class="form-group input-group" id="div_form_captcha">                   
-                            <span class="glyphicon glyphicon-qrcode input-group-addon"></span>
-                            <input style="margin-top: 2px;" type="text" class="form-control" placeholder="Captcha" name="jcaptcha"></div>
+                              <div class="form-group">
+                                            <label>Categoría</label>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="optionsRadios" id="CPU" value="CPU" checked />CPU
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="optionsRadios" id="GPU" value="GPU"/>GPU
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="optionsRadios" id="procesadores" value="Procesadores"/>Procesadores
+                                                </label>
+                                            </div>
+                              </div>
+
+                              <div class="form-group">
+                                            <label>Estado del artículo</label>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="optionsRadios2" id="Nuevo" value="Nuevo" checked />Nuevo
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="optionsRadios2" id="Seminuevo" value="Seminuevo"/>Seminuevo
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="optionsRadios2" id="Deteriorado" value="Deteriorado"/>Deteriorado
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="optionsRadios2" id="Antiguo" value="Antiguo"/>Antiguo
+                                                </label>
+                                            </div>
+                              </div>
+
+                              <div class="form-group">
+                                <label>Imagen del artículo</label>
+                                <input type="hidden" name="MAX_FILE_SIZE" value="1000000">
+                                <input name="adjuntar" type="file" id="adjuntar" size="12">
+                              </div>
+
+                              </select><br><br>                                                         
                          </fieldset>
                       </section>
                          <input type="submit" class="btn btn-danger btn-lg" style="margin-left: 40%" value="Confirmar">                     
@@ -195,4 +228,3 @@
    
 </body>
 </html>
-

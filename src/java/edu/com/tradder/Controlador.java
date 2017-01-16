@@ -63,8 +63,8 @@ public class Controlador extends HttpServlet {
             case "/validar":
                 // Validar el usuario
                 try {
-                    String user = request.getParameter("username");
-                    String pass = request.getParameter("password");
+                    String user = request.getParameter("email");
+                    String pass = request.getParameter("password_login");
                     MessageDigest md = MessageDigest.getInstance("SHA-256");
                     md.update(pass.getBytes());
                     byte byteData[] = md.digest();
@@ -149,6 +149,10 @@ public class Controlador extends HttpServlet {
                 session.removeAttribute("user");
                 request.setAttribute("msg", "Usuario desconectado");
                 vista = "/index.jsp";
+                break;
+            case "/publicar":
+                
+                vista="/publicar.jsp";
                 break;
             // Otros case
             default:

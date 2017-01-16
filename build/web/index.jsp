@@ -31,26 +31,34 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="Home.html">SebaShop</a> 
+                <a class="navbar-brand" href="Home.html">Tradder</a> 
             </div>
 
-            <c:if test="${requestScope.msg==null}">
-                <div class="content-fluid" id="login">
-                    <form class="row" role="form" action="/controlador/login">
-                      <div class="col-md-3" style="color: black; float:right ;display: inline; margin-top: 1%;">
+            <c:if test="${sessionScope.user==null}">
+                
+                <div class="content-fluid " id="login">
+                                       
+                    <form class="row" role="form"  action="/COQUEBA/controlador/validar">
+                      <div class="col-md-6"></div>  
+                      <div class="col-md-4" style="color: black ;display: inline; margin-top: 1%;">
                         <i style="color: white;" class="glyphicon glyphicon-user"></i>
-                        <input type="text" placeholder="Usuario"/>&nbsp
+                        <input type="text" name="email" placeholder="Usuario"/>&nbsp
                         <i style="color: white;" class="glyphicon glyphicon-lock"></i>
-                        <input type="text" placeholder="Contraseña"/>&nbsp
-                        <input style="margin-top: -3px;" type="submit" class="btn btn-sm btn-danger" value="Login">      
+                        <input type="password" name="password_login" placeholder="Contraseña"/>&nbsp
+                        <input style="margin-top: -3px;" type="submit" class="btn btn-sm btn-warning" value="Login">      
                       </div>
                     </form>
                 </div>                
             </c:if> 
-            <c:if test="${requestScope.msg!=null}">
-                <div class="content-fluid" id="usuario">
-                    <p style=" color: #d9534f; float: right; margin-right: 2%;">${sessionScope.user}</p>
-                    <button style="margin-top: -3px;" class="btn btn-sm btn-danger" onclick="windows.location.href='/controlador/logout'">Logout</button> 
+            <c:if test="${sessionScope.user!=null}">
+                <div class="content" id="usuario">
+                    <form role="form" action="/COQUEBA/controlador/logout">                       
+                        <div class="text-right"  style="display:inline; width: auto; float:right; margin-top:-21px; margin-right: 20px;">                               
+                                <p style=" color: white; margin-bottom:-1px;">${sessionScope.user}</p>
+                                <input type="submit" style="display:inline; " class="btn btn-sm btn-danger " value="Logout">
+                        </div>
+                            
+                    </form>
                 </div>
             </c:if>
             
@@ -66,7 +74,7 @@
 					</li>
                     
                     <li>
-                        <a  style="background:#d9534f;" href="Home.html" ><span class="fa-3x glyphicon glyphicon-home" aria-hidden="true"></span>  Home</a>
+                        <a  style="background:#d9534f;" href="/COQUEBA/controlador/home" ><span class="fa-3x glyphicon glyphicon-home" aria-hidden="true"></span>  Home</a>
                     </li> 
                     <li>
                         <a  href="/COQUEBA/controlador/articulos" ><span class="fa-3x glyphicon glyphicon-th-large" aria-hidden="true"></span>  Ver Artículos</a>
@@ -111,7 +119,7 @@
                  <div class="col-md-7 text-center">
                     <div class="panel panel-default">
                         <div class="panel-heading" style="background:#d9534f;">
-                            SebaShop
+                            Tradder
                         </div>
                         <div class="panel-body">
                             <ul class="nav nav-pills">
@@ -127,8 +135,8 @@
 
                             <div class="tab-content">
                                 <div class="tab-pane fade active in" id="home-pills">
-                                    <h1 style="font-weight: bold;">¡BIENVENIDOS A SEBASHOP!</h1>
-                                    <img src="assets/img/find_user.png" class="user-image img-responsive"/>
+                                    <h1 style="font-weight: bold;">¡BIENVENIDOS A TRADDER!</h1>
+                                    <img src="/COQUEBA/assets/img/find_user.png" class="user-image img-responsive"/>
                                     
                                 </div>
                                 <div class="tab-pane fade" id="quien-pills">
@@ -143,10 +151,10 @@
                                 </div>
                                 <div class="tab-pane fade" id="contacto-pills">
                                     <h4 style="font-weight: bold;">Contacto</h4>
-                                    <p>Email: soporte@SebaShop.com</p>
+                                    <p>Email: soporte@Tradder.com</p>
                                     <p>Teléfono: 616111111</p>
                                     <p>Dirección: Avenida Italia, Huelva, 21001</p>
-                                    <p style="color: grey; float: right; font-style: italic;">© 2016 SebaShop</p>
+                                    <p style="color: grey; float: right; font-style: italic;">© 2016 Tradder</p>
                                     
                                 </div>
                             </div>
@@ -223,7 +231,10 @@
               </div>
                 <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
                   <span class="glyphicon glyphicon-chevron-left btn-lg btn-danger" aria-hidden="true"></span>
-                </a>       
+                </a>   
+                
+                 
+
             </div>
           </div><!--/recommended_items-->
 

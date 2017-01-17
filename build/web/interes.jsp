@@ -111,17 +111,39 @@
                 
                  <!-- SECTION PRINCIPAL -->
                  
+                 <section id="recommended-item-carousel" class="carousel slide" data-ride="carousel" id="articulos"> <!--ARTICULOS-->
 
+                    <c:choose>
+                        <c:when test="${!empty sessionScope.articulos_favoritos}">
+                           <c:forEach var="art" items="${sessionScope.articulos_favoritos}">
+                                    <div class="col-sm-4">
+                                        <div class="product-image-wrapper">
+                                            <div class="productinfo text-center">
+                                                <img style="width:420px;height:320px;" src="/COQUEBA/assets/img_articulos/${art.nombre}${art.año}${art.cp}.jpg" alt="" />
+                                                <h3 style="font-size: 3em; font: yellow;">${art.precio}€</h3>
+                                                <h2>${art.nombre}</h2>
+                                                
+                                                <form class="container-fluid row" style="margin-bottom: 3%;">
+                                                    <p class="col-md-1" name="p_${art.id}" style="color: white; display:none;">${art.id}</p>
+                                                    <div class="col-md-4"></div>                  
+                                                     <a  href="/COQUEBA/controlador/borrarFavorito?idB=${art.id}"><span class='glyphicon glyphicon-remove-circle btn btn-danger col-md-2' style='font-size: 2em; margin: 1%;'></span></a>
+                                                     <a  href="/COQUEBA/controlador/detalles?idB=${art.id}"><span class='glyphicon glyphicon-info-sign btn btn-warning col-md-2' style='font-size: 2em; margin: 1%;'></span></a>                                                
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </c:forEach>                    
+                        </c:when>
+                        <c:otherwise>
+                              <p>No hay Artículos</p>  
+                        </c:otherwise>
+                    </c:choose>
+                  
+                       
+              </section>
+          </section><!--/recommended_items-->
                 
-                 
-
-            
-        
-
-
-
-
-
           
 
 

@@ -175,15 +175,9 @@
                                                 
                                                 <form class="container-fluid row" style="margin-bottom: 3%;">
                                                     <p class="col-md-1" name="p_${art.id}" style="color: white; display:none;">${art.id}</p>
-                                                    <div class="col-md-4"></div>
-
-                                                    <input type="buttom" onclick="addFav(${art.id});" class="btn btn-danger col-md-2" style="margin: 1%;">
-                                                        <span class='glyphicon glyphicon-heart btn-md' style='font-size: 2em;'></span>
-                                                    </input>
-
-                                                    <button type="buttom" class="btn btn-warning col-md-2"  style="margin: 1%;">
-                                                        <span class="glyphicon glyphicon-info-sign btn-md" style="font-size: 2em;"></span>
-                                                    </button>
+                                                    <div class="col-md-4"></div>                  
+                                                     <a  href="/COQUEBA/controlador/addFavoritos?id=${art.id}"><span class='glyphicon glyphicon-heart btn btn-danger col-md-2' style='font-size: 2em; margin: 1%;'></span></a>
+                                                     <a  href="/COQUEBA/controlador/detalles?id=${art.id}"><span class='glyphicon glyphicon-info-sign btn btn-warning col-md-2' style='font-size: 2em; margin: 1%;'></span></a>                                                
                                                 </form>
                                             </div>
                                         </div>

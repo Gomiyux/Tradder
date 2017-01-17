@@ -21,7 +21,8 @@ import javax.persistence.NamedQuery;
 
 @NamedQueries({
     @NamedQuery(name="Articulos.findAll",	query="SELECT a FROM Articulos a"),
-    @NamedQuery(name="Articulos.filter",	query="SELECT a FROM Articulos a"),})
+    @NamedQuery(name="Articulos.filter",	query="SELECT a FROM Articulos a"),
+    @NamedQuery(name="Articulos.Seleccionar",	query="SELECT a FROM Articulos a WHERE a.id = :id_art"),})
 @Entity
 public class Articulos implements Serializable {
     private static final long serialVersionUID = 1L;

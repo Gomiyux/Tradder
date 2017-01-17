@@ -14,11 +14,13 @@ import java.io.PrintWriter;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -177,11 +179,50 @@ public class Controlador extends HttpServlet {
                 break;
                 
             case "/addFavoritos":
-                String idf = request.getParameter("id");
-                System.out.println(idf);
-                        
-                vista="/interes.jsp";
+                              
+                String auxID = request.getParameter("id");
+                Long ida = Long.parseLong(auxID);
+                Articulos art= new Articulos();
+                TypedQuery<Articulos> q = em.createNamedQuery("Articulos.Seleccionar", Articulos.class);
+                q.setParameter("id_art", ida);    
+                List<Articulos> resultAUX = q.getResultList();      
+                List<Articulos> articulos_favoritos = (List<Articulos>) session.getAttribute("articulos_favoritos");
+              
+                 if (articulos_favoritos == null) {
+                    articulos_favoritos = new ArrayList<>();
+                 }
+                
+                art = resultAUX.get(0);  
+                articulos_favoritos.add(art);
+                
+                session.setAttribute("articulos_favoritos", articulos_favoritos);
+    
+                TypedQuery<Articulos> query3 = em.createNamedQuery("Articulos.findAll", Articulos.class);
+                List<Articulos> result3 = query3.getResultList();
+                request.setAttribute("articulos", result3);
+                
+                vista="/ver_articulos.jsp";
                 break;
+                
+            case "/borrarFavorito":
+                String auxID2 = request.getParameter("idB");
+                Long id_borrar= Long.parseLong(auxID2);
+                List<Articulos> lista_aux = (List<Articulos>) session.getAttribute("articulos_favoritos");
+                int b=0;
+                Boolean encontrado=false;               
+                while(b<lista_aux.size() && !encontrado){
+                    if(Objects.equals(lista_aux.get(b).getId(), id_borrar)){
+                        lista_aux.remove(b);
+                        encontrado=true;
+                    }
+                    else b++;
+                }
+                System.out.println("he salido");
+                session.setAttribute("articulos_favoritos", lista_aux);
+                
+                vista= "/interes.jsp";
+                break;
+                
             case "/interes":
                      vista= "/interes.jsp";
                 break;   
@@ -223,8 +264,7 @@ public class Controlador extends HttpServlet {
                 break;
             case "/validar_articulo":
                 
-                
-                
+                               
                 Articulos a;
                 
                 String cp = request.getParameter("cp");
@@ -291,7 +331,12 @@ public class Controlador extends HttpServlet {
                
                     
                 vista = "/publicar.jsp";
-                break;        
+                break; 
+                
+            case "/detalles" :
+                
+                vista ="/detalles.jsp";
+                break;
                 
             // Otros case
             default:

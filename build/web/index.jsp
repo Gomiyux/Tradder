@@ -125,8 +125,8 @@
                         <div class="panel-heading" style="background:#d9534f;">
                             Tradder
                         </div>
-                        <div class="panel-body">
-                            <ul class="nav nav-pills">
+                        <div class="panel-body ">
+                            <ul class="nav nav-pills" style="display:inline-block">
                                 <li class="active"><a href="#home-pills" data-toggle="tab">Home</a>
                                 </li>
                                 <li class=""><a href="#quien-pills" data-toggle="tab">¿Quiénes somos?</a>

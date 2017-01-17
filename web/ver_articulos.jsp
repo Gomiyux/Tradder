@@ -130,20 +130,19 @@
                                 <div class="col-md-1"></div> 
                                 <div class="form-group col-md-3" style="margin-top: 1%;">
                                   <label class="checkbox-inline">
-                                      <input type="checkbox"/> CPU
+                                      <input name="categoria_radio" type="checkbox"/> CPU
                                   </label>
                                   <label class="checkbox-inline">
-                                      <input type="checkbox"/> GPU
+                                      <input name="categoria_radio2" type="checkbox"/> GPU
                                   </label>
                                   <label class="checkbox-inline">
-                                      <input type="checkbox"/> Procesadores
+                                      <input  name="categoria_radio3" type="checkbox"/> Procesadores
                                   </label>
                                 </div>
 
                                 <div class="col-md-4" style="margin-top: 1%;">
                                   <b id="min" style="margin-right: 3%">0€</b> <input onchange="rangomaxmin();" id="rango" type="text" class="span2" value="" data-slider-min="0" data-slider-max="5000" data-slider-step="5" data-slider-value="[0,1000]"/> <b id="max" style="margin-left: 3%">5000€</b>
                                 </div>
-
 
                                 <div class="input-group form-group col-md-2" style="margin-top: 0.5%;">                   
                                   <span class="glyphicon glyphicon-map-marker input-group-addon"></span>
@@ -152,7 +151,7 @@
 
                               <div class="col-md-4"></div> 
                               <div class="col-md-3" style="margin-left: 3%;">
-                                <input class="btn btn-danger btn-md" value="Filtrar">   
+                                  <input class="btn btn-danger btn-md" onclick="filtrar();" value="Filtrar">   
                               </div>
 
                           </form>
@@ -171,9 +170,19 @@
                                         <div class="product-image-wrapper">
                                             <div class="productinfo text-center">
                                                 <img style="width:420px;height:320px;" src="/COQUEBA/assets/img_articulos/${art.nombre}${art.año}${art.cp}.jpg" alt="" />
-                                                <h2>${art.precio}€</h2>
-                                                <p>${art.nombre}</p>   
-                                                <p>${art.id}</p>
+                                                <h3 style="font-size: 3em; font: yellow;">${art.precio}€</h3>
+                                                <h2>${art.nombre}</h2>
+                                                
+                                                <form class="container-fluid row" style="margin-bottom: 3%;">
+                                                    <p class="col-md-1" name="p_${art.id}" style="color: white; display:none;">${art.id}</p>
+                                                    <div class="col-md-4"></div>
+                                                    <button type="submit" class="btn btn-danger col-md-2" style="margin: 1%;">
+                                                        <span class="glyphicon glyphicon-heart btn-md" style="font-size: 2em;"></span>
+                                                    </button>
+                                                    <button type="submit" class="btn btn-warning col-md-2"  style="margin: 1%;">
+                                                        <span class="glyphicon glyphicon-info-sign btn-md" style="font-size: 2em;"></span>
+                                                    </button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>

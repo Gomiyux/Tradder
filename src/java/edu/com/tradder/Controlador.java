@@ -187,6 +187,29 @@ public class Controlador extends HttpServlet {
                 request.setAttribute("msg", "Usuario desconectado");
                 vista = "/index.jsp";
                 break;
+                
+            case "/filtro":
+                
+                
+                TypedQuery<Articulos> articulos_query = em.createNamedQuery("Articulos.findAll", Articulos.class);
+                List<Articulos> lista_articulos = articulos_query.getResultList();
+                
+                String categoria1 = request.getParameter("categoria1");
+                String categoria2 = request.getParameter("categoria2");
+                String categoria3 = request.getParameter("categoria3");
+                String cp_filtro = request.getParameter("cp");
+                int pmenor = Integer.parseInt(request.getParameter("pmenor"));
+                int pmayor = Integer.parseInt(request.getParameter("pmayor"));
+                
+                           
+                
+                    
+                
+                //request.setAttribute("articulos", lista_articulos);
+                vista = "/ver_articulos.jsp";
+                break;
+                
+                
             case "/publicar":
                 
                 vista="/publicar.jsp";

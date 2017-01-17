@@ -176,10 +176,12 @@
                                                 <form class="container-fluid row" style="margin-bottom: 3%;">
                                                     <p class="col-md-1" name="p_${art.id}" style="color: white; display:none;">${art.id}</p>
                                                     <div class="col-md-4"></div>
-                                                    <button type="submit" class="btn btn-danger col-md-2" style="margin: 1%;">
-                                                        <span class="glyphicon glyphicon-heart btn-md" style="font-size: 2em;"></span>
-                                                    </button>
-                                                    <button type="submit" class="btn btn-warning col-md-2"  style="margin: 1%;">
+
+                                                    <input type="buttom" onclick="addFav(${art.id});" class="btn btn-danger col-md-2" style="margin: 1%;">
+                                                        <span class='glyphicon glyphicon-heart btn-md' style='font-size: 2em;'></span>
+                                                    </input>
+
+                                                    <button type="buttom" class="btn btn-warning col-md-2"  style="margin: 1%;">
                                                         <span class="glyphicon glyphicon-info-sign btn-md" style="font-size: 2em;"></span>
                                                     </button>
                                                 </form>
@@ -187,8 +189,7 @@
                                         </div>
                                     </div>
 
-                                </c:forEach>
-                            
+                                </c:forEach>                         
                         </c:when>
                         <c:otherwise>
                             <p>No hay Artículos</p>

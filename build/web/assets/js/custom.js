@@ -262,3 +262,9 @@ function rangomaxmin(){
     document.getElementById("min").innerHTML=( rangos[0]+"€");
     document.getElementById("max").innerHTML=(rangos[1]+ "€");
 }
+
+function addFav(id_fav){
+    window.location.href="/COQUEBA/controlador/addFavoritos?id="+id_fav;
+    //window.open("/COQUEBA/controlador/addFavoritos?id="+id_fav, "_self" , true );
+    s
+}

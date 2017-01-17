@@ -175,6 +175,13 @@ public class Controlador extends HttpServlet {
                      vista= "/ver_articulos.jsp";
                      
                 break;
+                
+            case "/addFavoritos":
+                String idf = request.getParameter("id");
+                System.out.println(idf);
+                        
+                vista="/interes.jsp";
+                break;
             case "/interes":
                      vista= "/interes.jsp";
                 break;   

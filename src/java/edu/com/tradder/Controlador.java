@@ -193,19 +193,114 @@ public class Controlador extends HttpServlet {
                 
                 TypedQuery<Articulos> articulos_query = em.createNamedQuery("Articulos.findAll", Articulos.class);
                 List<Articulos> lista_articulos = articulos_query.getResultList();
+                List<Articulos> articulos_final= new ArrayList<>();
+                List<Articulos> articulos_aux= new ArrayList<>();
+                
                 
                 String categoria1 = request.getParameter("categoria1");
                 String categoria2 = request.getParameter("categoria2");
                 String categoria3 = request.getParameter("categoria3");
                 String cp_filtro = request.getParameter("cp");
-                int pmenor = Integer.parseInt(request.getParameter("pmenor"));
-                int pmayor = Integer.parseInt(request.getParameter("pmayor"));
+                String a1=request.getParameter("pmenor");
+                String b1=request.getParameter("pmayor");
                 
-                           
+                /*
+                System.out.println("b1 es igual a:" +b1);
+                System.out.println("a1 es igual a:" +a1);
+                */
                 
+                int pmenor = Integer.parseInt(a1.toString());
+                int pmayor = Integer.parseInt(b1.toString());
+                
+                boolean categoria1b=false, categoria2b=false, categoria3b=false, cpb=false;
+                
+                if(!categoria1.equals("")){
                     
+                    categoria1b=true;
+                    
+                        for (int i = 0; i < lista_articulos.size(); i++) {
+
+                            if(lista_articulos.get(i).getCategoria().equals(categoria1)) articulos_aux.add(lista_articulos.get(i));
+
+                        }
+                }
                 
-                //request.setAttribute("articulos", lista_articulos);
+                if(!categoria2.equals("")){
+                    
+                        categoria2b=true;
+                        
+                        for (int i = 0; i < lista_articulos.size(); i++) {
+                        
+                            if(lista_articulos.get(i).getCategoria().equals(categoria2)) articulos_aux.add(lista_articulos.get(i));
+                        
+                        }   
+                 
+                }
+                
+                
+                
+                if(!categoria3.equals("")){
+                    
+                        categoria3b=true;
+                        
+                        for (int i = 0; i < lista_articulos.size(); i++) {
+                        
+                            if(lista_articulos.get(i).getCategoria().equals(categoria3)) articulos_aux.add(lista_articulos.get(i));
+                        
+                        }   
+                    
+                }
+
+                
+                if(!cp_filtro.equals("")){
+                    
+                        cpb=true;
+                        
+                        if(categoria1b || categoria2b || categoria3b) {
+                            
+                            
+                            for (int i = 0; i < articulos_aux.size(); i++) {
+                        
+                                if(!articulos_aux.get(i).getCp().equals(cp_filtro)) articulos_aux.remove(lista_articulos.get(i));
+                        
+                            }  
+                            
+                        }
+                        
+                        else{
+                            
+                            for (int i = 0; i < lista_articulos.size(); i++) {
+                        
+                                if(lista_articulos.get(i).getCp().equals(cp_filtro)) articulos_aux.add(lista_articulos.get(i));
+                        
+                            }  
+                        }
+
+                }
+                
+                
+                if(categoria1b || categoria2b || categoria3b || cpb) {
+                            
+                            
+                            for (int i = 0; i < articulos_aux.size(); i++) {
+                        
+                                if(Integer.parseInt(articulos_aux.get(i).getPrecio())>pmenor && Integer.parseInt(articulos_aux.get(i).getPrecio())<pmayor) articulos_final.add(articulos_aux.get(i));
+                        
+                            }  
+                            
+                }
+                        
+                else{
+                            
+                            for (int i = 0; i < lista_articulos.size(); i++) {
+                        
+                                if(Integer.parseInt(lista_articulos.get(i).getPrecio())>pmenor && Integer.parseInt(lista_articulos.get(i).getPrecio())<pmayor) articulos_final.add(articulos_aux.get(i));
+                        
+                            }  
+                }
+                
+                
+                request.setAttribute("articulos", lista_articulos);
                 vista = "/ver_articulos.jsp";
                 break;
                 

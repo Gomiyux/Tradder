@@ -19,9 +19,9 @@ import javax.persistence.NamedQuery;
  * @author carlo
  */
 
-@NamedQueries({
-    @NamedQuery(name="Articulos.findAll",	query="SELECT a FROM Articulos a"),
-    @NamedQuery(name="Articulos.filter",	query="SELECT a FROM Articulos a"),})
+
+@NamedQuery(name="Articulos.findAll",query="SELECT a FROM Articulos a")
+
 @Entity
 public class Articulos implements Serializable {
     private static final long serialVersionUID = 1L;

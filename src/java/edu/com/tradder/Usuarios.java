@@ -17,6 +17,7 @@ import javax.persistence.NamedQuery;
  *
  * @author SebaL
  */
+
 @Entity
 public class Usuarios implements Serializable {
     private static final long serialVersionUID = 1L;

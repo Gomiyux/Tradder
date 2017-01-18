@@ -1,8 +1,8 @@
-Wed Jan 18 00:53:52 CET 2017 : Servidor de red Apache Derby: Se ha iniciado 10.11.1.2 - (1629631) y está listo para aceptar las conexiones en el puerto 1527
+Wed Jan 18 17:09:11 CET 2017 : Servidor de red Apache Derby: Se ha iniciado 10.11.1.2 - (1629631) y está listo para aceptar las conexiones en el puerto 1527
 ----------------------------------------------------------------
-Wed Jan 18 00:53:53 CET 2017:
- Iniciando instancia a816c00e-0159-aed9-e5c7-00007eea4356 de Derby, versión The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): 
-en el directorio de base de datos C:\Users\carlo\Desktop\COQUEBA\tradderDB con el cargador de clases sun.misc.Launcher$AppClassLoader@4069b25f
+Wed Jan 18 17:09:11 CET 2017:
+ Iniciando instancia a816c00e-0159-b256-d095-00007eea4356 de Derby, versión The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): 
+en el directorio de base de datos C:\Users\carlo\Desktop\COQUEBA\tradderDB con el cargador de clases sun.misc.Launcher$AppClassLoader@29cd761a
 Cargado desde file:/C:/Program%20Files/Java/jdk1.8.0_101/db/lib/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.7.0_79-b15
@@ -13,8 +13,8 @@ os.version=6.3
 derby.system.home=C:\Users\carlo\Desktop\COQUEBA
 Cargador de clases de base de datos iniciado - derby.database.classpath=''
 ----------------------------------------------------------------
-Wed Jan 18 02:33:35 CET 2017: cerrando motor de Derby
+Wed Jan 18 17:43:44 CET 2017: cerrando motor de Derby
 ----------------------------------------------------------------
-Wed Jan 18 02:33:35 CET 2017:
-Cerrando la instancia a816c00e-0159-aed9-e5c7-00007eea4356 en el directorio de base de datos C:\Users\carlo\Desktop\COQUEBA\tradderDB con cargador de clases sun.misc.Launcher$AppClassLoader@4069b25f
+Wed Jan 18 17:43:44 CET 2017:
+Cerrando la instancia a816c00e-0159-b256-d095-00007eea4356 en el directorio de base de datos C:\Users\carlo\Desktop\COQUEBA\tradderDB con cargador de clases sun.misc.Launcher$AppClassLoader@29cd761a
 ----------------------------------------------------------------

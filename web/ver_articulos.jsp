@@ -160,8 +160,8 @@
                 </div>
               </section>         
 
-              <section id="recommended-item-carousel" class="carousel slide" data-ride="carousel" id="articulos"> <!--ARTICULOS-->
-
+              <section id="recommended-item-carousel2" style="display: block" class="carousel slide" data-ride="carousel" > <!--ARTICULOS-->
+                  
                     <c:choose>
                         <c:when test="${!empty requestScope.articulos}">
                                 <c:forEach var="art" items="${requestScope.articulos}">
@@ -192,6 +192,9 @@
                   
                        
               </section>
+                
+             
+                
           </section><!--/recommended_items-->
 
                  

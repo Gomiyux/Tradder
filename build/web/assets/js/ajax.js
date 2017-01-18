@@ -58,6 +58,13 @@ function fin_filtro() {
     if (xhr.readyState === 4) {
         if (xhr.status === 200) {
             //document.getElementById("msg").innerHTML = xhr.responseText;
+            
+            var articu =document.getElementById("recommended-item-carousel2");
+            articu.innerHTML = xhr.responseText;
+           
+            
+             //("#recommended-item-carousel3").load(location.href+" #recommended-item-carousel3>*","");
+            //$('#recommended-item-carousel3').load(location.href +  ' #recommended-item-carousel3');
         }
     }
 

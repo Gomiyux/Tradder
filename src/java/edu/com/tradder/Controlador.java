@@ -320,7 +320,7 @@ public class Controlador extends HttpServlet {
                 
                 TypedQuery<Articulos> articulos_query = em.createNamedQuery("Articulos.findAll", Articulos.class);
                 List<Articulos> lista_articulos = articulos_query.getResultList();
-                List<Articulos> articulos_final= new ArrayList<>();
+                List<Articulos> articulos_final= (List) new ArrayList<>();
                 List<Articulos> articulos_aux= new ArrayList<>();
                 
                 
@@ -443,10 +443,13 @@ public class Controlador extends HttpServlet {
                     
                 }
 
-                System.out.println("lista articulos: "+articulos_final.size());
-                request.setAttribute("articulos_filtrados", articulos_final);
-                vista = "/ver_articulos.jsp";
-                break;    
+                
+                session.setAttribute("articulos2", articulos_final);
+                
+                vista = "/WEB-INF/vistas/filtro_articulos.jsp";
+                break;   
+                
+                
             // Otros case
             default:
                 vista = "/index.jsp";

@@ -104,8 +104,12 @@
         <div id="page-wrapper" >
             <div id="page-inner">
                 <div class="row">
-                    <div class="col-md-12">
-                     <h2>Articulos </h2>   
+                    <div class="col-md-2">
+                        <h2>Articulos </h2>   
+                    </div>
+                    <div class="alert alert-danger fade in alert-dismissable col-md-7" style="font-size: 1.5em;">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Danger!</strong> Indicates a dangerous or potentially negative action.
                     </div>
                 </div>
                  <!-- /. ROW  -->
@@ -159,7 +163,7 @@
                     </div>
                 </div>
               </section>         
-
+                
               <section id="recommended-item-carousel" class="carousel slide" data-ride="carousel" id="articulos"> <!--ARTICULOS-->
 
                     <c:choose>
@@ -175,9 +179,14 @@
                                                 
                                                 <form class="container-fluid row" style="margin-bottom: 3%;">
                                                     <p class="col-md-1" name="p_${art.id}" style="color: white; display:none;">${art.id}</p>
-                                                    <div class="col-md-4"></div>                  
-                                                     <a  href="/COQUEBA/controlador/addFavoritos?id=${art.id}"><span class='glyphicon glyphicon-heart btn btn-danger col-md-2' style='font-size: 2em; margin: 1%;'></span></a>
-                                                     <a  href="/COQUEBA/controlador/detalles?id=${art.id}"><span class='glyphicon glyphicon-info-sign btn btn-warning col-md-2' style='font-size: 2em; margin: 1%;'></span></a>                                                
+                                                    <div class="col-md-4"></div>
+                                                    <c:if test="${sessionScope.user==null}">                                
+                                                        <a><span class='glyphicon glyphicon-heart btn btn-warning col-md-2' style='font-size: 2em; margin: 1%;'></span></a>
+                                                    </c:if>
+                                                    <c:if test="${sessionScope.user!=null}">
+                                                        <a  href="/COQUEBA/controlador/addFavoritos?id=${art.id}" ><span class='glyphicon glyphicon-heart btn btn-danger col-md-2' style='font-size: 2em; margin: 1%;'></span></a>
+                                                    </c:if>    
+                                                        <a  href="/COQUEBA/controlador/detalles?id=${art.id}"><span class='glyphicon glyphicon-info-sign btn btn-warning col-md-2' style='font-size: 2em; margin: 1%;'></span></a>                                                
                                                 </form>
                                             </div>
                                         </div>

@@ -217,7 +217,7 @@ public class Controlador extends HttpServlet {
                     }
                     else b++;
                 }
-                System.out.println("he salido");
+                
                 session.setAttribute("articulos_favoritos", lista_aux);
                 
                 vista= "/interes.jsp";
@@ -235,28 +235,6 @@ public class Controlador extends HttpServlet {
                 request.setAttribute("msg", "Usuario desconectado");
                 vista = "/index.jsp";
                 break;
-                
-            case "/filtro":
-                
-                
-                TypedQuery<Articulos> articulos_query = em.createNamedQuery("Articulos.findAll", Articulos.class);
-                List<Articulos> lista_articulos = articulos_query.getResultList();
-                
-                String categoria1 = request.getParameter("categoria1");
-                String categoria2 = request.getParameter("categoria2");
-                String categoria3 = request.getParameter("categoria3");
-                String cp_filtro = request.getParameter("cp");
-                int pmenor = Integer.parseInt(request.getParameter("pmenor"));
-                int pmayor = Integer.parseInt(request.getParameter("pmayor"));
-                
-                           
-                
-                    
-                
-                //request.setAttribute("articulos", lista_articulos);
-                vista = "/ver_articulos.jsp";
-                break;
-                
                 
             case "/publicar":
                 
@@ -337,7 +315,138 @@ public class Controlador extends HttpServlet {
                 
                 vista ="/detalles.jsp";
                 break;
+            case "/filtro":
                 
+                
+                TypedQuery<Articulos> articulos_query = em.createNamedQuery("Articulos.findAll", Articulos.class);
+                List<Articulos> lista_articulos = articulos_query.getResultList();
+                List<Articulos> articulos_final= new ArrayList<>();
+                List<Articulos> articulos_aux= new ArrayList<>();
+                
+                
+                String categoria1 = request.getParameter("categoria1");
+                String categoria2 = request.getParameter("categoria2");
+                String categoria3 = request.getParameter("categoria3");
+                String cp_filtro = request.getParameter("cp");
+                String a1=request.getParameter("pmenor");
+                String b1=request.getParameter("pmayor");
+                
+                
+                
+                
+                int pmenor = Integer.parseInt(a1.toString());
+                int pmayor = Integer.parseInt(b1.toString());
+                
+                boolean categoria1b=false, categoria2b=false, categoria3b=false, cpb=false;
+                
+                
+                
+                
+                if(categoria1.equals("on")){
+                    
+                   
+                    
+                    categoria1b=true;
+                    
+                        for (int i = 0; i < lista_articulos.size(); i++) {
+
+                            if(lista_articulos.get(i).getCategoria().equals("CPU")) articulos_aux.add(lista_articulos.get(i));
+
+                        }
+                }
+                
+                if(categoria2.equals("on")){
+                    
+                        
+                    
+                        categoria2b=true;
+                        
+                        for (int i = 0; i < lista_articulos.size(); i++) {
+                        
+                            if(lista_articulos.get(i).getCategoria().equals("GPU")) articulos_aux.add(lista_articulos.get(i));
+                        
+                        }   
+                 
+                }
+                
+                if(categoria3.equals("on")){
+                    
+                    
+                        
+                        categoria3b=true;
+                        
+                        for (int i = 0; i < lista_articulos.size(); i++) {
+                        
+                            if(lista_articulos.get(i).getCategoria().equals("Procesadores")) articulos_aux.add(lista_articulos.get(i));
+                        
+                        }   
+                    
+                }
+
+                
+                if(!cp_filtro.equals("")){
+                    
+                        cpb=true;
+                        
+                        
+                        
+                        if(categoria1b || categoria2b || categoria3b) {
+                            
+                            
+                            int size=articulos_aux.size();
+                            ArrayList<Integer> borrar = new ArrayList<Integer>();
+                            
+                            for (int i = 0; i < size; i++) {
+                        
+                                
+                                if(!articulos_aux.get(i).getCp().equals(cp_filtro))    borrar.add(i);
+                                    
+                                
+                        
+                            }  
+                            
+                            for(int i =0;i<borrar.size();i++){
+                                
+                                
+                                    articulos_aux.remove((borrar.get(i).intValue())-i);
+                                
+                            }
+                            
+                        }
+                        
+                        else{
+                            
+                            for (int i = 0; i < lista_articulos.size(); i++) {
+                        
+                                if(lista_articulos.get(i).getCp().equals(cp_filtro)) articulos_aux.add(lista_articulos.get(i));
+                        
+                            }  
+                        }
+
+                }
+                
+                
+                if(categoria1b || categoria2b || categoria3b || cpb) {
+                            
+
+                            for (int i = 0; i < articulos_aux.size(); i++) {
+                        
+                                if(Integer.parseInt(articulos_aux.get(i).getPrecio())>pmenor && Integer.parseInt(articulos_aux.get(i).getPrecio())<pmayor) articulos_final.add(articulos_aux.get(i));
+                        
+                            }  
+                            
+                }
+                     
+                else{
+                    
+                    for (int i = 0; i < lista_articulos.size(); i++) if(Integer.parseInt(lista_articulos.get(i).getPrecio())>pmenor && Integer.parseInt(lista_articulos.get(i).getPrecio())<pmayor) articulos_final.add(lista_articulos.get(i));
+                    
+                }
+
+                System.out.println("lista articulos: "+articulos_final.size());
+                request.setAttribute("articulos_filtrados", articulos_final);
+                vista = "/ver_articulos.jsp";
+                break;    
             // Otros case
             default:
                 vista = "/index.jsp";

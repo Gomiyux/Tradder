@@ -130,13 +130,13 @@
                                 <div class="col-md-1"></div> 
                                 <div class="form-group col-md-3" style="margin-top: 1%;">
                                   <label class="checkbox-inline">
-                                      <input name="categoria_radio" type="checkbox"/> CPU
+                                      <input id="categoria_radio" type="checkbox" /> CPU
                                   </label>
                                   <label class="checkbox-inline">
-                                      <input name="categoria_radio2" type="checkbox"/> GPU
+                                      <input id="categoria_radio2" type="checkbox" /> GPU
                                   </label>
                                   <label class="checkbox-inline">
-                                      <input  name="categoria_radio3" type="checkbox"/> Procesadores
+                                      <input  id="categoria_radio3" type="checkbox"/> Procesadores
                                   </label>
                                 </div>
 
@@ -146,12 +146,12 @@
 
                                 <div class="input-group form-group col-md-2" style="margin-top: 0.5%;">                   
                                   <span class="glyphicon glyphicon-map-marker input-group-addon"></span>
-                                <input style="margin-top: 2px;" class="form-control" placeholder="CP" id="cp" type="text" pattern="[0-9]{5}" title="Formato incorrecto" name="cp"></div>         
+                                <input style="margin-top: 2px;" class="form-control" placeholder="CP" id="cp" type="text" pattern="[0-9]{5}" title="Formato incorrecto" ></div>         
                               </div>
 
                               <div class="col-md-4"></div> 
                               <div class="col-md-3" style="margin-left: 3%;">
-                                  <input class="btn btn-danger btn-md" onclick="filtrar();" value="Filtrar">   
+                                  <input type="button" class="btn btn-danger btn-md" onclick="filtrar();" value="Filtrar">   
                               </div>
 
                           </form>
@@ -227,7 +227,8 @@
     
     <!-- CUSTOM SCRIPTS -->
     <script src="/COQUEBA/assets/js/custom.js"></script>
-
+    <script src="/COQUEBA/assets/js/ajax.js"></script>
+    
     <script type="text/javascript">
       var slider = new Slider('#rango', {});      
     </script>

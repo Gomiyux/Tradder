@@ -23,20 +23,26 @@ function filtrar() {
     var url = "filtro";
     xhr.open("POST", url, true);
     xhr.onreadystatechange = fin_filtro;
-
-    var categoria1 = document.getElementByName("categoria_radio");
-    var categoria2 = document.getElementByName("categoria_radio2");
-    var categoria3 = document.getElementByName("categoria_radio3");
     
-    var cp = document.getElementByName("cp");
+    var categoria1 = "off";
+    var categoria2 = "off";
+    var categoria3 = "off";
+    
+    if(document.getElementById("categoria_radio").checked) categoria1 = "on";
+    if(document.getElementById("categoria_radio2").checked) categoria2 = "on";
+    if(document.getElementById("categoria_radio3").checked) categoria3 = "on";
+
+    
+    
+    var cp = document.getElementById("cp").value;
     
     var rango= document.getElementById("rango").value;
     var rangos= rango.split(",");
     
     
-    var datos = "cp=" + encodeURIComponent(cp.value) +
-            "&pmenor=" + encodeURIComponent(rangos[0].value)+
-            "&pmayor=" + encodeURIComponent(rangos[1].value)+
+    var datos = "cp=" + encodeURIComponent(cp) +
+            "&pmenor=" + encodeURIComponent(rangos[0])+
+            "&pmayor=" + encodeURIComponent(rangos[1])+
             "&categoria1=" + encodeURIComponent(categoria1) +
             "&categoria2=" + encodeURIComponent(categoria2) +
             "&categoria3=" + encodeURIComponent(categoria3) ;

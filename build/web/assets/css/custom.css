@@ -427,3 +427,14 @@ line-height: 1.428571429;
   background: #ccccc6;
 }
 
+a>.glyphicon:before { margin-right: 15px; }
+
+#main-menu > li >a {
+    font-family: 'Chewy', cursive;
+    font-size: 1.4em;
+}
+
+#main-menu > li >a >.glyphicon {
+    
+    font-size: 1.4em;
+}

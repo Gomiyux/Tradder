@@ -18,6 +18,8 @@
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
    
    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.5.4/css/bootstrap-slider.min.css" rel="stylesheet" />
+   <link href="https://fonts.googleapis.com/css?family=Vampiro+One" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Chewy" rel="stylesheet">
 </head>
 <body>
     <div id="wrapper">
@@ -29,7 +31,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="Home.html" >Tradder</a> 
+                <a class="navbar-brand" style="padding-top: -10px;font-family: 'Vampiro One', cursive; font-size: 3em; color: #white;" href="Home.html" >TR</a> 
             </div>
 
             <c:if test="${sessionScope.user==null}">
@@ -66,30 +68,30 @@
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
-                <ul class="nav" id="main-menu">
-				<li class="text-center">
+                <ul class="nav text-center" id="main-menu">
+		  <li class="text-center">
                     <img src="/COQUEBA/assets/img/find_user.png" class="user-image img-responsive"/>
 					</li>
                     
                     <li>
-                        <a  href="/COQUEBA/controlador/home" ><span class="fa-3x glyphicon glyphicon-home" aria-hidden="true"></span>  Home</a>
+                        <a  href="/COQUEBA/controlador/home" ><span style="vertical-align: middle;" class="fa-3x glyphicon glyphicon-home" aria-hidden="true"></span>  Home</a>
                     </li> 
                     <li>
-                        <a  style="background:#d9534f;" href="/COQUEBA/controlador/articulos" ><span class="fa-3x glyphicon glyphicon-th-large" aria-hidden="true"></span>  Ver Artículos</a>
+                        <a  style="background:#d9534f;" href="/COQUEBA/controlador/articulos" ><span style="vertical-align: middle;" class="fa-3x glyphicon glyphicon-th-large" aria-hidden="true"></span>  Ver Artículos</a>
                     </li>
                     
                     <c:choose>	
                         <c:when test="${sessionScope.user==null}">
                     <li  >
-                        <a  href="/COQUEBA/controlador/alta" ><span class="fa-3x glyphicon glyphicon-pencil" aria-hidden="true"></span>  Registrarse</a>
+                        <a  href="/COQUEBA/controlador/alta" ><span style="vertical-align: middle;" class="fa-3x glyphicon glyphicon-pencil" aria-hidden="true"></span>  Registrarse</a>
                     </li> 
                         </c:when>
                         <c:otherwise>
                     <li>
-                        <a  href="/COQUEBA/controlador/publicar" ><span class="fa-3x glyphicon glyphicon-plus" aria-hidden="true"></span>  Publicar Artículo</a>
+                        <a  href="/COQUEBA/controlador/publicar" ><span style="vertical-align: middle;" class="fa-3x glyphicon glyphicon-plus" aria-hidden="true"></span>  Publicar Artículo</a>
                     </li>
 						   <li  >
-                        <a  href="/COQUEBA/controlador/interes" ><span class="fa-3x glyphicon glyphicon-heart" aria-hidden="true"></span>  Mis Articulos de Interés</a>
+                        <a  href="/COQUEBA/controlador/interes" ><span style="vertical-align: middle;" class="fa-3x glyphicon glyphicon-heart" aria-hidden="true"></span>  Mis Articulos de Interés</a>
                     </li>
                         </c:otherwise>                                
                     </c:choose>	
@@ -121,11 +123,11 @@
                 <div class="col-md-1"></div>  
                 <div class="col-md-10">
                     <div class="panel panel-danger">
-                        <div class="panel-heading">
+                        <div class="panel-heading" style="background-color: #C90000; color:white;">
                             Filtrar artículos
                         </div>
                         <div class="panel-body">
-                          <form >
+                          <form class="text-center" >
                             <div>
                                 <div class="col-md-1"></div> 
                                 <div class="form-group col-md-3" style="margin-top: 1%;">

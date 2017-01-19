@@ -14,6 +14,8 @@
     <link href="/COQUEBA/assets/css/custom.css" rel="stylesheet" />
      <!-- GOOGLE FONTS-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+   <link href="https://fonts.googleapis.com/css?family=Vampiro+One" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Chewy" rel="stylesheet">
 </head>
 <body>
     <div id="wrapper">
@@ -25,7 +27,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="Home.html" >Tradder</a> 
+                <a class="navbar-brand"   style="padding-top: -10px;font-family: 'Vampiro One', cursive; font-size: 3em; color: #white;"href="Home.html" >TR</a> 
             </div>
 
             <c:if test="${sessionScope.user==null}">
@@ -62,30 +64,30 @@
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
-                <ul class="nav" id="main-menu">
+                <ul class="nav text-center" id="main-menu">
 				<li class="text-center">
                     <img src="/COQUEBA/assets/img/find_user.png" class="user-image img-responsive"/>
 					</li>
                     
                     <li>
-                        <a   href="/COQUEBA/controlador/home" ><span class="fa-3x glyphicon glyphicon-home" aria-hidden="true"></span>  Home</a>
+                        <a   href="/COQUEBA/controlador/home" ><span style="vertical-align: middle;" class="fa-3x glyphicon glyphicon-home" aria-hidden="true"></span>  Home</a>
                     </li> 
                     <li>
-                        <a  href="/COQUEBA/controlador/articulos" ><span class="fa-3x glyphicon glyphicon-th-large" aria-hidden="true"></span>  Ver Artículos</a>
+                        <a  href="/COQUEBA/controlador/articulos" ><span style="vertical-align: middle;" class="fa-3x glyphicon glyphicon-th-large" aria-hidden="true"></span>  Ver Artículos</a>
                     </li>
                     
                     <c:choose>	
                         <c:when test="${sessionScope.user==null}">
                     <li  >
-                        <a  href="/COQUEBA/controlador/alta" ><span class="fa-3x glyphicon glyphicon-pencil" aria-hidden="true"></span>  Registrarse</a>
+                        <a  href="/COQUEBA/controlador/alta" ><span style="vertical-align: middle;" class="fa-3x glyphicon glyphicon-pencil" aria-hidden="true"></span>  Registrarse</a>
                     </li> 
                         </c:when>
                         <c:otherwise>
                     <li>
-                        <a  href="/COQUEBA/controlador/publicar" ><span class="fa-3x glyphicon glyphicon-plus" aria-hidden="true"></span>  Publicar Artículo</a>
+                        <a  href="/COQUEBA/controlador/publicar" ><span style="vertical-align: middle;" class="fa-3x glyphicon glyphicon-plus" aria-hidden="true"></span>  Publicar Artículo</a>
                     </li>
 						   <li  >
-                        <a style="background:#d9534f;" href="/COQUEBA/controlador/interes" ><span class="fa-3x glyphicon glyphicon-heart" aria-hidden="true"></span>  Mis Articulos de Interés</a>
+                        <a style="background:#d9534f;" href="/COQUEBA/controlador/interes" ><span style="vertical-align: middle;" class="fa-3x glyphicon glyphicon-heart" aria-hidden="true"></span>  Mis Articulos de Interés</a>
                     </li>
                         </c:otherwise>                                
                     </c:choose>	

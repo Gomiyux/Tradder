@@ -17,6 +17,8 @@
      <!-- GOOGLE FONTS-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
    <link href="https://fonts.googleapis.com/css?family=Chewy" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Vampiro+One" rel="stylesheet"> 
+       
 </head>
 <body>
     <div id="wrapper">
@@ -127,13 +129,12 @@
                                                 <form class="container-fluid row" style="margin-bottom: 3%;">
                                                     <p class="col-md-1" name="p_${art.id}" style="color: white; display:none;">${art.id}</p>
                                                     <div class="col-md-4"></div>                  
-                                                     <a  href="/COQUEBA/controlador/borrarFavorito?idB=${art.id}"><span class='glyphicon glyphicon-remove-circle btn btn-danger col-md-2' style='font-size: 2em; margin: 1%;'></span></a>
-                                                     <a  href="/COQUEBA/controlador/detalles?idB=${art.id}"><span class='glyphicon glyphicon-info-sign btn btn-warning col-md-2' style='font-size: 2em; margin: 1%;'></span></a>                                                
+                                                     <a  href="/COQUEBA/controlador/borrarFavorito?id=${art.id}"><span class='glyphicon glyphicon-remove-circle btn btn-danger col-md-2' style='font-size: 2em; margin: 1%;'></span></a>
+                                                     <a  href="/COQUEBA/controlador/detalles?id=${art.id}"><span class='glyphicon glyphicon-info-sign btn btn-warning col-md-2' style='font-size: 2em; margin: 1%;'></span></a>                                                
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
-
                                 </c:forEach>                    
                         </c:when>
                         <c:otherwise>

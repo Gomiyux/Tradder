@@ -125,7 +125,7 @@
                  <div class="col-md-7 text-center">
                     <div class="panel panel-default">
                         <div class="panel-heading" style="background:#C90000; color:white">
-                            información
+                            Información
                         </div>
                         <div class="panel-body ">
                             <ul class="nav nav-pills" style="display:inline-block">
@@ -179,15 +179,14 @@
                         <c:when test="${!empty requestScope.Ultimos_articulos1}">
                             <c:forEach var="art" items="${requestScope.Ultimos_articulos1}">
                                 <div class="col-sm-4">
-                                    <div class="product-image-wrapper">
-                                        <div class="productinfo text-center">
-                                            <img style="width:420px;height:320px;" src="/COQUEBA/assets/img_articulos/${art.nombre}${art.año}${art.cp}.jpg" alt="" />
-                                            <h2>${art.precio}€</h2>
-                                            <p>${art.nombre}</p>   
-                                            <p>${art.id}</p>
+                                        <div class="product-image-wrapper">
+                                            <div class="productinfo text-center">
+                                                <img style="width:420px;height:320px;" src="/COQUEBA/assets/img_articulos/${art.nombre}${art.año}${art.cp}.jpg" alt="" />
+                                                <h3 style="font-size: 3em;">${art.precio}€</h3>
+                                                <h2>${art.nombre}</h2>                                               
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                             </c:forEach>
                         </c:when>
                         <c:otherwise>
@@ -200,15 +199,14 @@
                         <c:when test="${!empty requestScope.Ultimos_articulos2}">
                             <c:forEach var="art" items="${requestScope.Ultimos_articulos2}">
                                 <div class="col-sm-4">
-                                    <div class="product-image-wrapper">
-                                        <div class="productinfo text-center">
-                                            <img style="width:420px;height:320px;" src="/COQUEBA/assets/img_articulos/${art.nombre}${art.año}${art.cp}.jpg" alt="" />
-                                            <h2>${art.precio}€</h2>
-                                            <p>${art.nombre}</p>   
-                                            <p>${art.id}</p>
+                                        <div class="product-image-wrapper">
+                                            <div class="productinfo text-center">
+                                                <img style="width:420px;height:320px;" src="/COQUEBA/assets/img_articulos/${art.nombre}${art.año}${art.cp}.jpg" alt="" />
+                                                <h3 style="font-size: 3em;">${art.precio}€</h3>
+                                                <h2>${art.nombre}</h2>                                                                                             
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                             </c:forEach>
                         </c:when>
                         <c:otherwise>

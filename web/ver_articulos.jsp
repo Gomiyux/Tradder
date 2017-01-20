@@ -172,13 +172,18 @@
                                         <div class="product-image-wrapper">
                                             <div class="productinfo text-center">
                                                 <img style="width:420px;height:320px;" src="/COQUEBA/assets/img_articulos/${art.nombre}${art.año}${art.cp}.jpg" alt="" />
-                                                <h3 style="font-size: 3em; font: yellow;">${art.precio}€</h3>
+                                                <h3 style="font-size: 3em;">${art.precio}€</h3>
                                                 <h2>${art.nombre}</h2>
                                                 
                                                 <form class="container-fluid row" style="margin-bottom: 3%;">
                                                     <p class="col-md-1" name="p_${art.id}" style="color: white; display:none;">${art.id}</p>
-                                                    <div class="col-md-4"></div>                  
-                                                     <a  href="/COQUEBA/controlador/addFavoritos?id=${art.id}"><span class='glyphicon glyphicon-heart btn btn-danger col-md-2' style='font-size: 2em; margin: 1%;'></span></a>
+                                                    <div class="col-md-4"></div> 
+                                                    <c:if test="${sessionScope.user==null}">
+                                                        <a  href=""><span class='glyphicon glyphicon-heart btn btn-default col-md-2' style='font-size: 2em; margin: 1%;'></span></a>
+                                                    </c:if>
+                                                    <c:if test="${sessionScope.user!=null}">
+                                                        <a  href="/COQUEBA/controlador/addFavoritos?id=${art.id}"><span class='glyphicon glyphicon-heart btn btn-danger col-md-2' style='font-size: 2em; margin: 1%;'></span></a>
+                                                    </c:if>                                                    
                                                      <a  href="/COQUEBA/controlador/detalles?id=${art.id}"><span class='glyphicon glyphicon-info-sign btn btn-warning col-md-2' style='font-size: 2em; margin: 1%;'></span></a>                                                
                                                 </form>
                                             </div>

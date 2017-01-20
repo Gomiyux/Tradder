@@ -126,7 +126,7 @@ public class Controlador extends HttpServlet {
                     System.err.println(e);
                     request.setAttribute("msg", "ERROR: imposible validar al usuario");
                 }
-                vista = "/index.jsp";
+                vista = "/controlador/home";
                 break;
             case "/alta":
                 // Mostrar el formulario de alta
@@ -205,7 +205,7 @@ public class Controlador extends HttpServlet {
                 break;
                 
             case "/borrarFavorito":
-                String auxID2 = request.getParameter("idB");
+                String auxID2 = request.getParameter("id");
                 Long id_borrar= Long.parseLong(auxID2);
                 List<Articulos> lista_aux = (List<Articulos>) session.getAttribute("articulos_favoritos");
                 int b=0;
@@ -233,7 +233,7 @@ public class Controlador extends HttpServlet {
                 session.removeAttribute("id");
                 session.removeAttribute("user");
                 request.setAttribute("msg", "Usuario desconectado");
-                vista = "/index.jsp";
+                vista = "/controlador/home";
                 break;
                 
             case "/publicar":
@@ -312,6 +312,17 @@ public class Controlador extends HttpServlet {
                 break; 
                 
             case "/detalles" :
+                String aux4 = request.getParameter("id");
+                Long idDet = Long.parseLong(aux4);
+                Articulos artDet= new Articulos();
+                TypedQuery<Articulos> qDet = em.createNamedQuery("Articulos.Seleccionar", Articulos.class);
+                qDet.setParameter("id_art", idDet);    
+                List<Articulos> resultDet = qDet.getResultList();
+                
+                artDet = resultDet.get(0);
+                
+                request.setAttribute("articuloDetalle", artDet);
+
                 
                 vista ="/detalles.jsp";
                 break;

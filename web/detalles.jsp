@@ -112,7 +112,7 @@
                                 <!-- SECTION PRINCIPAL -->
 
 
-                                <section> <!-- SECCION DE DETALLES DEL ARTICULO -->
+                                <section class="row"> <!-- SECCION DE DETALLES DEL ARTICULO -->
                                     <div class="col-md-1" ></div>
                                     <div style="margin-top: 4%" class="col-md-3">
                                         <div class="product-image-wrapper">
@@ -124,29 +124,100 @@
                                     <div style="margin-top: 3%; margin-left: 1%;" class="col-md-7">
                                         <div class="panel panel-danger">
                                             <!-- Default panel contents -->
-                                            <div style="font-size: 3em;" class="panel-heading">${requestScope.articuloDetalle.nombre}</div>
+                                            <div style="font-size: 3em; color:black; font-family: 'Chewy', cursive;" class="panel-heading">${requestScope.articuloDetalle.nombre}</div>
                                             <div class="panel-body">
-                                                <p>${requestScope.articuloDetalle.descripcion}</p>
+                                                
+                                                <strong>Descripcion:</strong> ${requestScope.articuloDetalle.descripcion}
                                             </div>
 
                                             <!-- Lista de detalles -->
                                             <ul class="list-group">
-                                                <li class="list-group-item">${requestScope.articuloDetalle.precio}€</li>
-                                                <li class="list-group-item">${requestScope.articuloDetalle.categoria}</li>
-                                                <li class="list-group-item">${requestScope.articuloDetalle.estado}</li>
-                                                <li class="list-group-item">${requestScope.articuloDetalle.año}</li>
-                                                <li class="list-group-item">${requestScope.articuloDetalle.cp}</li>
+                                                <li class="list-group-item">
+                                                    <strong>Precio: </strong>${requestScope.articuloDetalle.precio}€   
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <strong>Categoria: </strong>${requestScope.articuloDetalle.categoria}
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <strong>Estado: </strong>${requestScope.articuloDetalle.estado}
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <strong>Año: </strong>${requestScope.articuloDetalle.año}
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <strong>Codigo Postal: </strong>${requestScope.articuloDetalle.cp}
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
+                                                <div class="col-md-1"></div>
                                 </section>                
 
 
 
 
-                                <section> <!-- SECCION DE COMENTARIOS DEL ARTICULO -->
+                               <section class="row" style="margin-top: 50px;"> <!-- SECCION DE COMENTARIOS DEL ARTICULO -->
+                                    <div class="col-md-1" style="display:inline;">
+                                        
+                                    </div>
+                                    <div class="panel panel-danger col-md-10" style="padding-bottom: 40px;">
+                                        <div class="panel-heading text-center" style="background-color: #C90000; color :white;">COMENTARIOS</div>  
+                                        <hr>
+                                            <div class="row">
+                                                <div class="col-md-1"></div>
+                                                    <div class="media col-md-10">
+                                                        <div class="media-left">
+                                                            <a href="#">
+                                                                <img class="media-object" src="/COQUEBA/assets/img/user.png" style="width:64px; height: 64px;" alt="">
+                                                            </a>
+                                                        </div>
+                                                        <div class="media-body">
 
+                                                            <h4 class="media-heading"><strong>USUARIO 2</strong></h4>
+                                                            <p>Este es el comentario 1 del usuario 2</p>
 
+                                                        </div>
+                                                    </div>
+                                                <div class="col-md-1"></div>
+                                            </div>
+                                                <hr>
+                                            <div class="row">
+                                                <div class="col-md-1"></div>
+                                                    <div class="media col-md-10">
+                                                        <div class="media-left">
+                                                            <a href="#">
+                                                                <img class="media-object" src="/COQUEBA/assets/img/user.png" style="width:64px; height: 64px;" alt="">
+                                                            </a>
+                                                        </div>
+                                                        <div class="media-body">
+
+                                                            <h4 class="media-heading"><strong>USUARIO 2</strong></h4>
+                                                            <p>Este es el comentario 1 del usuario 3</p>
+
+                                                        </div>
+                                                    </div>
+                                                <div class="col-md-1"></div>
+                                            </div>
+                                                <hr>
+                                            <div class="row">
+                                                <div class="col-md-1"></div>
+                                                    <div class="media col-md-10">
+                                                        <div class="media-left">
+                                                            <a href="#">
+                                                                <img class="media-object" src="/COQUEBA/assets/img/user.png" style="width:64px; height: 64px;" alt="">
+                                                            </a>
+                                                        </div>
+                                                        <div class="media-body">
+
+                                                            <h4 class="media-heading"><strong>USUARIO 2</strong></h4>
+                                                            <p>Este es el comentario 1 del usuario 3</p>
+
+                                                        </div>
+                                                    </div>
+                                                <div class="col-md-1"></div>
+                                            </div>
+                                    </div>
+                                    <div class="col-md-1"></div>
 
                                 </section>    
 

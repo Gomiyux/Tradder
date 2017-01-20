@@ -165,8 +165,8 @@
               <section id="recommended-item-carousel2" style="display: block" class="carousel slide" data-ride="carousel" > <!--ARTICULOS-->
                   
                     <c:choose>
-                        <c:when test="${!empty requestScope.articulos}">
-                                <c:forEach var="art" items="${requestScope.articulos}">
+                        <c:when test="${!empty applicationScope.articulos}">
+                                <c:forEach var="art" items="${applicationScope.articulos}">
 
                                     <div class="col-sm-4">
                                         <div class="product-image-wrapper">
@@ -179,7 +179,7 @@
                                                     <p class="col-md-1" name="p_${art.id}" style="color: white; display:none;">${art.id}</p>
                                                     <div class="col-md-4"></div> 
                                                     <c:if test="${sessionScope.user==null}">
-                                                        <a  href=""><span class='glyphicon glyphicon-heart btn btn-default col-md-2' style='font-size: 2em; margin: 1%;'></span></a>
+                                                        <a id="registrate"  title="Registrate para añadir favoritos" ><span class='glyphicon glyphicon-heart btn btn-default col-md-2' style='font-size: 2em; margin: 1%;'></span></a>
                                                     </c:if>
                                                     <c:if test="${sessionScope.user!=null}">
                                                         <a  href="/COQUEBA/controlador/addFavoritos?id=${art.id}"><span class='glyphicon glyphicon-heart btn btn-danger col-md-2' style='font-size: 2em; margin: 1%;'></span></a>
@@ -243,6 +243,12 @@
       var slider = new Slider('#rango', {});      
     </script>
     
-   
+    <script>
+        $(function () {$('[data-toggle="tooltip"]').tooltip();})
+        
+        function registrate(){
+            $('#registrate').tooltip('show');
+        }
+    </script>
 </body>
 </html>

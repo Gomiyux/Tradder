@@ -23,6 +23,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -173,7 +174,10 @@ public class Controlador extends HttpServlet {
             case "/articulos":
                      TypedQuery<Articulos> query = em.createNamedQuery("Articulos.findAll", Articulos.class);
                      List<Articulos> result = query.getResultList();
-                     request.setAttribute("articulos", result);
+                     
+                     ServletContext context = request.getSession().getServletContext();
+                     
+                     context.setAttribute("articulos", result);
                      vista= "/ver_articulos.jsp";
                      
                 break;

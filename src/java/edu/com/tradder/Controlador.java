@@ -63,7 +63,9 @@ public class Controlador extends HttpServlet {
         String vista;
         HttpSession session = request.getSession();
         
-        
+        session.removeAttribute("marca_favorito");
+        session.removeAttribute("borra_favorito");
+        session.removeAttribute("sube_articulo");
 
         switch (accion) {
             case "/home":
@@ -178,6 +180,7 @@ public class Controlador extends HttpServlet {
                      ServletContext context = request.getSession().getServletContext();
                      
                      context.setAttribute("articulos", result);
+                     
                      vista= "/ver_articulos.jsp";
                      
                 break;
@@ -203,6 +206,7 @@ public class Controlador extends HttpServlet {
     
                 TypedQuery<Articulos> query3 = em.createNamedQuery("Articulos.findAll", Articulos.class);
                 List<Articulos> result3 = query3.getResultList();
+                session.setAttribute("marca_favorito", "yes");
                 request.setAttribute("articulos", result3);
                 
                 vista="/ver_articulos.jsp";
@@ -213,6 +217,7 @@ public class Controlador extends HttpServlet {
                 Long id_borrar= Long.parseLong(auxID2);
                 List<Articulos> lista_aux = (List<Articulos>) session.getAttribute("articulos_favoritos");
                 int b=0;
+                session.setAttribute("borra_favorito", "yes");
                 Boolean encontrado=false;               
                 while(b<lista_aux.size() && !encontrado){
                     if(Objects.equals(lista_aux.get(b).getId(), id_borrar)){
@@ -310,7 +315,7 @@ public class Controlador extends HttpServlet {
                     msg = "<p class=\"error\">Error: Faltan datos</p>";
                 }*/
 
-               
+                session.setAttribute("sube_articulo", "yes");
                     
                 vista = "/publicar.jsp";
                 break; 

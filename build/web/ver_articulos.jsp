@@ -108,7 +108,10 @@
                 <div class="row">
                     <div class="col-md-12">
                      <h2>Articulos </h2>   
-                    </div>
+                     <c:if test="${sessionScope.marca_favorito!=null}">
+                         <div class="alert alert-success" id="mensaje_fav" role="alert">¡Articulo añadido con exito!</div>
+                     </c:if>
+                     </div>
                 </div>
                  <!-- /. ROW  -->
                  <hr />
@@ -244,6 +247,10 @@
     </script>
     
     <script>
+        
+        
+        
+        
         $(function () {$('[data-toggle="tooltip"]').tooltip();})
         
         function registrate(){

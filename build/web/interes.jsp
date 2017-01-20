@@ -106,7 +106,10 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Articulos de interes </h2>   
+                     <h2>Articulos de interes </h2>  
+                     <c:if test="${sessionScope.borra_favorito!=null}">
+                         <div class="alert alert-success" id="mensaje_fov" role="alert">¡Articulo eliminado con exito!</div>
+                     </c:if>
                     </div>
                 </div>
                  <!-- /. ROW  -->
@@ -138,7 +141,7 @@
                                 </c:forEach>                    
                         </c:when>
                         <c:otherwise>
-                              <p>No hay Artículos</p>  
+                              <p>No tienes articulos marcados como favoritos </p>  
                         </c:otherwise>
                     </c:choose>
                   

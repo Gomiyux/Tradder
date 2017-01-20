@@ -175,6 +175,7 @@
 
                                                             <h4 class="media-heading"><strong>USUARIO 2</strong></h4>
                                                             <p>Este es el comentario 1 del usuario 2</p>
+                                                            <p class="text-right" style="font-size: 1em;">18/01/2017</p>
 
                                                         </div>
                                                     </div>
@@ -193,6 +194,7 @@
 
                                                             <h4 class="media-heading"><strong>USUARIO 2</strong></h4>
                                                             <p>Este es el comentario 1 del usuario 3</p>
+                                                            <p  class="text-right" style="font-size: 1em;">18/01/2017</p>
 
                                                         </div>
                                                     </div>
@@ -211,6 +213,7 @@
 
                                                             <h4 class="media-heading"><strong>USUARIO 2</strong></h4>
                                                             <p>Este es el comentario 1 del usuario 3</p>
+                                                            <p class="text-right" style="font-size: 1em;">18/01/2017</p>
 
                                                         </div>
                                                     </div>

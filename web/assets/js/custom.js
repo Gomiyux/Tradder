@@ -266,5 +266,6 @@ function rangomaxmin(){
 function addFav(id_fav){
     window.location.href="/COQUEBA/controlador/addFavoritos?id="+id_fav;
     //window.open("/COQUEBA/controlador/addFavoritos?id="+id_fav, "_self" , true );
-    s
+    
 }
+

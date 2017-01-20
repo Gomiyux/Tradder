@@ -103,7 +103,10 @@
                             <div id="page-inner">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <h2>Detalles</h2>   
+                                        <h2 style="font-family: 'Chewy', cursive;">Detalles</h2> 
+                                        <c:if test="${applicationScope.wrong_user!=null}">
+                                            <div class="alert alert-danger" id="articulo_publicado" role="alert">¡Vaya, parece que no existe esa combinación de usuario y contraseña!</div>
+                                        </c:if>
                                     </div>
                                 </div>
                                 <!-- /. ROW  -->

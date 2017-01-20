@@ -111,8 +111,10 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Home</h2>   
-                       
+                     <h2 style="font-family: 'Chewy', cursive;" >Home</h2>   
+                     <c:if test="${applicationScope.wrong_user!=null}">
+                         <div class="alert alert-danger" id="articulo_publicado" role="alert">¡Vaya, parece que no existe esa combinación de usuario y contraseña!</div>
+                     </c:if>
                     </div>
                 </div>
                  <!-- /. ROW  -->
@@ -141,22 +143,22 @@
 
                             <div class="tab-content">
                                 <div class="tab-pane fade active in" id="home-pills">
-                                    <h1 style="font-weight: bold;">¡BIENVENIDOS A TRADDER!</h1>
+                                    <h1 style="font-weight: bold;font-family: 'Chewy', cursive;font-size: 2em;">¡BIENVENIDOS A TRADDER!</h1>
                                     <img src="/COQUEBA/assets/img/find_user.png" class="user-image img-responsive"/>
                                     
                                 </div>
                                 <div class="tab-pane fade" id="quien-pills">
-                                    <h4 style="font-weight: bold;">¿Quiénes somos?</h4>
+                                    <h4 style="font-weight: bold;font-family: 'Chewy', cursive;font-size: 2em;">¿Quiénes somos?</h4>
                                     <p>Somos una tienda online española de hardware especializada en la venta de componentes para PCs, fundada en 2016.
                                     Esperamos poder satisfacer todas vuestras compras de hardware al mejor precio.</p>
                                 </div>
                                 <div class="tab-pane fade" id="vendemos-pills">
-                                    <h4 style="font-weight: bold;">¿Qué vendemos?</h4>
+                                    <h4 style="font-weight: bold;font-family: 'Chewy', cursive;font-size: 2em;">¿Qué vendemos?</h4>
                                     <p>Vendemos todo lo relacionado con el hardware desde procesadores hasta cajas para montar nuestro PC. Ahora mismo solo disponemos de tres apartados los
                                     cuales son: Graficas, Cajas y Procesadores. Poco a poco iremos rellenando nuestro inventario y abarcando mas tipos de productos.</p>
                                 </div>
                                 <div class="tab-pane fade" id="contacto-pills">
-                                    <h4 style="font-weight: bold;">Contacto</h4>
+                                    <h4 style="font-weight: bold;font-family: 'Chewy', cursive; font-size: 2em;">Contacto</h4>
                                     <p>Email: soporte@Tradder.com</p>
                                     <p>Teléfono: 616111111</p>
                                     <p>Dirección: Avenida Italia, Huelva, 21001</p>
@@ -170,7 +172,7 @@
             </div>
 
             <div class="recommended_items"><!--recommended_items-->
-            <h2 class="title text-center" style="margin-bottom: 3%;">Últimos añadidos</h2>
+            <h2 class="title text-center" style="margin-bottom: 3%;font-family: 'Chewy', cursive;">Últimos añadidos</h2>
             
             <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner">
@@ -182,8 +184,8 @@
                                         <div class="product-image-wrapper">
                                             <div class="productinfo text-center">
                                                 <img style="width:420px;height:320px;" src="/COQUEBA/assets/img_articulos/${art.nombre}${art.año}${art.cp}.jpg" alt="" />
-                                                <h3 style="font-size: 3em;">${art.precio}€</h3>
-                                                <h2>${art.nombre}</h2>                                               
+                                                <h3 style="font-size: 2em;">${art.precio}€</h3>
+                                                <h2 style="font-family: 'Chewy', cursive;">${art.nombre}</h2>                                               
                                             </div>
                                         </div>
                                     </div>
@@ -202,8 +204,8 @@
                                         <div class="product-image-wrapper">
                                             <div class="productinfo text-center">
                                                 <img style="width:420px;height:320px;" src="/COQUEBA/assets/img_articulos/${art.nombre}${art.año}${art.cp}.jpg" alt="" />
-                                                <h3 style="font-size: 3em;">${art.precio}€</h3>
-                                                <h2>${art.nombre}</h2>                                                                                             
+                                                <h3 style="font-size: 2em;">${art.precio}€</h3>
+                                                <h2 style="font-family: 'Chewy', cursive;">${art.nombre}</h2>                                                                                             
                                             </div>
                                         </div>
                                     </div>

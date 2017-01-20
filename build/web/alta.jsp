@@ -110,8 +110,13 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Registrarse</h2>   
-                       
+                     <h2 style="font-family: 'Chewy', cursive;">Registrarse</h2>   
+                     <c:if test="${sessionScope.nuevouser!=null}">
+                         <div class="alert alert-success" id="articulo_publicado" role="alert">¡Cuenta creada con exito!</div>
+                     </c:if>
+                     <c:if test="${spplicationScope.wrong_user!=null}">
+                         <div class="alert alert-danger" id="articulo_publicado" role="alert">¡Vaya, parece que no existe esa combinación de usuario y contraseña!</div>
+                     </c:if>
                     </div>
                 </div>
                  <!-- /. ROW  -->

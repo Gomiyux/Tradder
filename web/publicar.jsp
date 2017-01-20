@@ -112,7 +112,7 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Publicar Nuevo Artículo</h2>   
+                     <h2 style="font-family: 'Chewy', cursive;">Publicar Nuevo Artículo</h2>   
                      <c:if test="${sessionScope.sube_articulo!=null}">
                          <div class="alert alert-success" id="articulo_publicado" role="alert">¡Articulo subido satisfactoriamente!</div>
                      </c:if>

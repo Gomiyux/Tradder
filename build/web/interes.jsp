@@ -106,7 +106,7 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Articulos de interes </h2>  
+                     <h2 style="font-family: 'Chewy', cursive;">Articulos de interes </h2>  
                      <c:if test="${sessionScope.borra_favorito!=null}">
                          <div class="alert alert-success" id="mensaje_fov" role="alert">¡Articulo eliminado con exito!</div>
                      </c:if>

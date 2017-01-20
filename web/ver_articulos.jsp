@@ -107,10 +107,13 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Articulos </h2>   
+                     <h2 style="font-family: 'Chewy', cursive;">Articulos </h2>   
                      <c:if test="${sessionScope.marca_favorito!=null}">
                          <div class="alert alert-success" id="mensaje_fav" role="alert">¡Articulo añadido con exito!</div>
                      </c:if>
+                     <c:if test="${applicationScope.wrong_user!=null}">
+                         <div class="alert alert-danger" id="articulo_publicado" role="alert">¡Vaya, parece que no existe esa combinación de usuario y contraseña!</div>
+                     </c:if>    
                      </div>
                 </div>
                  <!-- /. ROW  -->
@@ -176,7 +179,7 @@
                                             <div class="productinfo text-center">
                                                 <img style="width:420px;height:320px;" src="/COQUEBA/assets/img_articulos/${art.nombre}${art.año}${art.cp}.jpg" alt="" />
                                                 <h3 style="font-size: 3em;">${art.precio}€</h3>
-                                                <h2>${art.nombre}</h2>
+                                                <h2 style="font-family: 'Chewy', cursive;">${art.nombre}</h2>
                                                 
                                                 <form class="container-fluid row" style="margin-bottom: 3%;">
                                                     <p class="col-md-1" name="p_${art.id}" style="color: white; display:none;">${art.id}</p>

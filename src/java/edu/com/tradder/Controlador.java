@@ -45,6 +45,8 @@ public class Controlador extends HttpServlet {
     private EntityManager em;
     @Resource
     private javax.transaction.UserTransaction utx;
+    
+    private int i=0;
 
     
     /**
@@ -66,7 +68,12 @@ public class Controlador extends HttpServlet {
         session.removeAttribute("marca_favorito");
         session.removeAttribute("borra_favorito");
         session.removeAttribute("sube_articulo");
-
+        session.removeAttribute("nuevouser");
+        session.removeAttribute("wrong_user");
+        ServletContext context = request.getSession().getServletContext();
+        if(i!=0){context.removeAttribute("wrong_user"); i=0;}
+        
+        
         switch (accion) {
             case "/home":
                 // Página Principal
@@ -91,6 +98,7 @@ public class Controlador extends HttpServlet {
                 
                 request.setAttribute("Ultimos_articulos1", aux1);
                 request.setAttribute("Ultimos_articulos2", aux2);
+                i++;
                 vista = "/index.jsp";
                 break;
             case "/login":
@@ -124,6 +132,8 @@ public class Controlador extends HttpServlet {
                         session.setAttribute("usuario", u);
                     } else {
                         request.setAttribute("msg", "Usuario o Password incorrecto.");
+                        context = request.getSession().getServletContext();
+                        context.setAttribute("wrong_user","yes");
                     }
                 } catch (Exception e) {
                     System.err.println(e);
@@ -133,6 +143,7 @@ public class Controlador extends HttpServlet {
                 break;
             case "/alta":
                 // Mostrar el formulario de alta
+                i++;
                 vista = "/alta.jsp";
                 break;
             case "/guardar":
@@ -167,6 +178,7 @@ public class Controlador extends HttpServlet {
                     u.setPassword(pass_digest);
                     persist(u);
                     request.setAttribute("msg", "Usuario guardado");
+                    session.setAttribute("nuevouser", "yes");
                 } catch (Exception e) {
                     request.setAttribute("msg", "ERROR: Usuario NO guardado");
                 }
@@ -174,10 +186,12 @@ public class Controlador extends HttpServlet {
                 break;
                 
             case "/articulos":
+                
+                    i++;
                      TypedQuery<Articulos> query = em.createNamedQuery("Articulos.findAll", Articulos.class);
                      List<Articulos> result = query.getResultList();
                      
-                     ServletContext context = request.getSession().getServletContext();
+                     context = request.getSession().getServletContext();
                      
                      context.setAttribute("articulos", result);
                      

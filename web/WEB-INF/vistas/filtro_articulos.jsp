@@ -8,7 +8,7 @@
                                             <div class="productinfo text-center">
                                                 <img style="width:420px;height:320px;" src="/COQUEBA/assets/img_articulos/${art2.nombre}${art2.año}${art2.cp}.jpg" alt="" />
                                                 <h3 style="font-size: 3em; font: yellow;">${art2.precio}€</h3>
-                                                <h2>${art2.nombre}</h2>
+                                                <h2 style="font-family: 'Chewy', cursive;">${art2.nombre}</h2>
                                                 
                                                 <form class="container-fluid row" style="margin-bottom: 3%;">
                                                     <p class="col-md-1" name="p_${art2.id}" style="color: white; display:none;">${art2.id}</p>

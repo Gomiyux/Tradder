@@ -222,6 +222,7 @@
  ======================================*/
 
 
+
 function validar(){
 
     var spanName= document.getElementById("spanName");
@@ -229,9 +230,14 @@ function validar(){
     var spanClave= document.getElementById("spanClave");
     spanClave.innerHTML="";
     var div_clave= document.getElementById("div_form_clave");
+    div_clave.classList.remove("has-error");
     var div_nombre= document.getElementById("div_form_nombre");
+    div_nombre.classList.remove("has-error");
     var div_captcha= document.getElementById("div_form_captcha");
-    var ok="true";    
+    div_captcha.classList.remove("has-error");
+    var ok=true;    
+    
+    
 
     var f = document.getElementById("f");
 
@@ -240,19 +246,95 @@ function validar(){
         spanName.innerHTML="*Nombre Requerido";
         div_nombre.classList.add("has-error");
     };
-
+    
+    if (f.password1!==f.password2){
+            ok=false;
+            spanClave.innerHTML="*Las claves no coincide";
+            div_clave.classList.add("has-error");      
+        };
+        
     if (f.password1.value=="") {
         ok=false;
         spanClave.innerHTML="*Clave Requerida";
         div_clave.classList.add("has-error");
     };
 
-    if(f.jcaptcha.value!="captcha"){
+    if(f.jcaptcha.value!=="captcha"){ //Captcha sin funcionalidad
         ok=false;
         div_captcha.classList.add("has-error");
+    };
+    
+    if(div_form_email.classList.contains("has-error")==true){
+        ok=false;     
     }
     
     return ok;
+}
+
+
+function validarPublicacion(){
+    var spanName= document.getElementById("spanNameART");
+    spanName.innerHTML="";
+    var spanPrecio= document.getElementById("spanPrecioART");
+    spanPrecio.innerHTML="";
+    var spanCp= document.getElementById("spanCpART");
+    spanCp.innerHTML="";
+    var spanFoto= document.getElementById("spanImagenART");
+    spanFoto.innerHTML="";
+    
+    var div_cp= document.getElementById("div_art_cp");
+    div_cp.classList.remove("has-error");
+    var div_nombre= document.getElementById("div_art_nombre");
+    div_nombre.classList.remove("has-error");
+    var div_precio= document.getElementById("div_art_precio");
+    div_precio.classList.remove("has-error");
+    var div_foto= document.getElementById("div_art_foto");
+    var ok2=false;
+    var f2 = document.getElementById("f2");
+    
+    if(f2.file1.value!=""){
+        var file= f2.file1.value.toString();    
+        var extension = (file.substring(file.lastIndexOf("."))).toLowerCase();
+        var sizeArch = f2.file1.files[0].size;
+    }
+   
+
+    if (f2.precio.value=="") {
+        ok2=false;
+        spanPrecio.innerHTML="*Precio Requerido";
+        div_precio.classList.add("has-error");
+    };
+    
+    if (f2.cp.value=="") {
+        ok2=false;
+        spanCp.innerHTML="*CP Requerido";
+        div_cp.classList.add("has-error");
+    };
+    
+    if (f2.name.value=="") {
+        ok2=false;
+        spanName.innerHTML="*Nombre Requerido";
+        div_nombre.classList.add("has-error");
+    };
+    
+    if (f2.file1.value=="") {
+        ok2=false;
+        spanFoto.innerHTML="*Imagen Requerida";
+    }
+    else{   
+        if (extension!="jpg" && extension!="jpeg" && extension!="png") {
+            ok2=false;
+            spanFoto.innerHTML="*Formato no compatible (Debe ser .jpg, .jpg o .png)";
+        };
+
+        if (sizeArch > 5242880) {
+            ok2=false;
+            spanFoto.innerHTML="*La imagen no puede superar los 5Mb";
+        };  
+    }
+    
+    
+    return ok2;
 }
 
 function rangomaxmin(){
@@ -263,9 +345,4 @@ function rangomaxmin(){
     document.getElementById("max").innerHTML=(rangos[1]+ "€");
 }
 
-function addFav(id_fav){
-    window.location.href="/COQUEBA/controlador/addFavoritos?id="+id_fav;
-    //window.open("/COQUEBA/controlador/addFavoritos?id="+id_fav, "_self" , true );
-    
-}
 

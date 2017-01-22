@@ -168,22 +168,23 @@ public class Controlador extends HttpServlet {
                     }
                     String pass_digest = sb.toString();
                     
-                    
-                    Usuarios u = new Usuarios();
-                    u.setCp(cp);
-                    u.setDireccion(direccion);
-                    u.setFacebook(facebook);
-                    u.setTelefono(telefono);
-                    u.setNombre(nombre);
-                    u.setEmail(email);
-                    u.setPassword(pass_digest);
-                    persist(u);
-                    request.setAttribute("msg", "Usuario guardado");
-                    session.setAttribute("nuevouser", "yes");
+                    if(email != null && pass_digest != null && nombre != null){
+                        Usuarios u = new Usuarios();
+                        u.setCp(cp);
+                        u.setDireccion(direccion);
+                        u.setFacebook(facebook);
+                        u.setTelefono(telefono);
+                        u.setNombre(nombre);
+                        u.setEmail(email);
+                        u.setPassword(pass_digest);
+                        persist(u);
+                        request.setAttribute("msg", "Usuario guardado");
+                        session.setAttribute("nuevouser", "yes");
+                    }
                 } catch (Exception e) {
                     request.setAttribute("msg", "ERROR: Usuario NO guardado");
                 }
-                vista = "/index.jsp";
+                vista = "/controlador/home";
                 break;
                 
             case "/articulos":
@@ -277,7 +278,7 @@ public class Controlador extends HttpServlet {
                 String estado = request.getParameter("optionsRadios2");
                 String descripcion = request.getParameter("descripcion");
                  
-                //if (cp != null && year != null && name != null && pvp != null) {
+                if (cp != null && name != null && pvp != null) {
                     try {
                         a = new Articulos();
                         a.setAño(year);
@@ -325,10 +326,9 @@ public class Controlador extends HttpServlet {
                         System.out.println("Error: Imposible persistir  articulo: " + name);
                         String msg = "<p class='error'>Error: Artículo " + name + " no creado</p>";
                     }
-                /*} else {
-                    System.out.println("Error: datos incorrectos");
-                    msg = "<p class=\"error\">Error: Faltan datos</p>";
-                }*/
+                } else {
+                    System.out.println("Error: datos incorrectos");                   
+                }
 
                 session.setAttribute("sube_articulo", "yes");
                     
@@ -544,10 +544,29 @@ public class Controlador extends HttpServlet {
                 vista="/WEB-INF/vistas/vista_comentarios.jsp";
                 
             break;
+            
+                
+            case "/validarEmail" :
+                String mailAUX = request.getParameter("emailValidar");
+                TypedQuery<Usuarios> query4 = em.createNamedQuery("Usuarios.findEmail", Usuarios.class);
+                query4.setParameter("emailUnicidad", mailAUX);  
+                List<Usuarios> result4= query4.getResultList();
+                int malAUX;
+                if(result4.isEmpty()){
+                    session.setAttribute("malEmail", 1);
+                    malAUX=0;
+                }
+                else{
+                    session.setAttribute("malEmail", 0);
+                    malAUX=1;
+                }  
+                vista="/WEB-INF/vistas/validarEmail.jsp?malEmail="+malAUX;
+                break;
+                
                 
             // Otros case
             default:
-                vista = "/index.jsp";
+                vista = "/controlador/home";
                 break;
         }
         RequestDispatcher rd = request.getRequestDispatcher(vista);

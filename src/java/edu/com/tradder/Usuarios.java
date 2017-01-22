@@ -17,7 +17,8 @@ import javax.persistence.NamedQuery;
 
 @NamedQueries({@NamedQuery(name="Usuarios.findByName",	query="SELECT u FROM Usuarios u WHERE u.email = :name AND u.password = :pwd"),
 @NamedQuery(name="Usuarios.findByNameAndPass",	query="SELECT u FROM Usuarios u WHERE u.email = :name AND u.password = :pwd"),
-@NamedQuery(name="Usuarios.findById",	query="SELECT u FROM Usuarios u WHERE u.id = :id")
+@NamedQuery(name="Usuarios.findById",	query="SELECT u FROM Usuarios u WHERE u.id = :id"),
+@NamedQuery(name="Usuarios.findEmail",	query="SELECT u FROM Usuarios u WHERE u.email = :emailUnicidad"),
 })
 
 /**

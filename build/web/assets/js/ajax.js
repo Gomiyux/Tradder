@@ -115,6 +115,37 @@ function fin_comentario(){
             
             
         }
-    }
+    }   
+}
+
+function validarEmail_AJAX(){
+    init_ajax();
+    var url = "validarEmail";
+    xhr.open("POST", url, true);
+    xhr.onreadystatechange = fin_validarEmail;
     
+    var emailAUX=document.getElementById("email").value;
+    
+    var datos = "emailValidar=" + encodeURIComponent(emailAUX);
+
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(datos);
+}
+
+function fin_validarEmail() {
+    if (xhr.readyState === 4) {
+        if (xhr.status === 200) {        
+            var vali =document.getElementById("validar_email");
+            console.log(xhr.responseText[7]);
+            if(xhr.responseText[7]=="M"){
+               vali.innerHTML = xhr.responseText;     
+            }
+            else{
+               var div_email=document.getElementById("div_form_email");
+               div_email.classList.remove("has-error");
+               document.getElementById("spanCorreo").textContent="";
+            }        
+        }
+    }
+
 }

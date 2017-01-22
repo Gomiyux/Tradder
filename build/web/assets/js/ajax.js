@@ -69,3 +69,52 @@ function fin_filtro() {
     }
 
 }
+
+function enviar_comentario(id_articulo){
+    
+    init_ajax();
+    var url = "guardar_comentario";
+    xhr.open("POST", url, true);
+    xhr.onreadystatechange = fin_comentario;
+        
+    var privacidad;    
+    
+    if(document.getElementById("radiopublico").checked) privacidad = document.getElementById("radiopublico").value;
+    if(document.getElementById("radiovendedor").checked) privacidad = document.getElementById("radiovendedor").value;
+    if(document.getElementById("radiopersonal").checked) privacidad = document.getElementById("radiopersonal").value;
+    
+    
+    
+    var texto = document.getElementById("comment").value;
+    
+    var datos = "privacidad=" + encodeURIComponent(privacidad) +
+            "&texto=" + encodeURIComponent(texto) +
+             "&id_articulo=" + encodeURIComponent(id_articulo);
+            
+    
+    
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(datos);
+    
+}
+
+function fin_comentario(){
+    
+    if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+            
+            
+            var articu =document.getElementById("comment_wrapper");
+            articu.innerHTML = xhr.responseText;
+            document.getElementById("comentario_publicado").style.display="block";
+            var num= parseInt($('#numero_comentarios').text());
+            var num= num+1;
+            document.getElementById("numero_comentarios").textContent=num;
+            
+           
+            
+            
+        }
+    }
+    
+}

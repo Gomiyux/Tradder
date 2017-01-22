@@ -71,6 +71,7 @@ public class Controlador extends HttpServlet {
         session.removeAttribute("nuevouser");
         session.removeAttribute("wrong_user");
         ServletContext context = request.getSession().getServletContext();
+        
         if(i!=0){context.removeAttribute("wrong_user"); i=0;}
         
         
@@ -344,6 +345,12 @@ public class Controlador extends HttpServlet {
                 
                 artDet = resultDet.get(0);
                 
+                TypedQuery<Comentarios> comentario_auxiliar = em.createNamedQuery("Comentarios.findById", Comentarios.class);
+                comentario_auxiliar.setParameter("id_articulo", Long.parseLong(aux4));
+                List<Comentarios> lista_comentarios= comentario_auxiliar.getResultList();
+                session.setAttribute("comentarios", lista_comentarios);
+                session.setAttribute("num_comentarios", lista_comentarios.size());
+                
                 request.setAttribute("articuloDetalle", artDet);
 
                 
@@ -483,6 +490,60 @@ public class Controlador extends HttpServlet {
                 vista = "/WEB-INF/vistas/filtro_articulos.jsp";
                 break;   
                 
+                
+            case"/guardar_comentario":
+                
+                
+               
+                
+                TypedQuery<Articulos> articulos_comentarios = em.createNamedQuery("Articulos.Seleccionar", Articulos.class);
+                
+                articulos_comentarios.setParameter("id_art", Long.parseLong(request.getParameter("id_articulo")));
+                List<Articulos> lista_articulos_comentarios = articulos_comentarios.getResultList();
+                Articulos articulo_comentario= lista_articulos_comentarios.get(0);
+                
+                TypedQuery<Usuarios> usuario_auxiliar = em.createNamedQuery("Usuarios.findById", Usuarios.class);
+                usuario_auxiliar.setParameter("id", session.getAttribute("id"));
+                List<Usuarios> usuarios_list= usuario_auxiliar.getResultList();
+                Usuarios usuario_comentario = usuarios_list.get(0);
+                
+                String texto=request.getParameter("texto");
+                String privacidad=request.getParameter("privacidad");
+                
+                  
+               
+                try{
+                    
+                
+                
+                    
+                Comentarios comentario = new Comentarios();
+                comentario.setArticulo(articulo_comentario);
+                comentario.setAutor(usuario_comentario);
+                comentario.setPrivacidad(privacidad);
+                comentario.setTexto(texto);
+                persist(comentario);
+                    
+                    TypedQuery<Comentarios> comentario_auxiliar2 = em.createNamedQuery("Comentarios.findById", Comentarios.class);
+                    comentario_auxiliar2.setParameter("id_articulo", Long.parseLong(request.getParameter("id_articulo")));
+                    List<Comentarios> lista_comentarios2= comentario_auxiliar2.getResultList();
+                    session.setAttribute("comentarios", lista_comentarios2);
+                    session.setAttribute("num_comentarios", lista_comentarios2.size());
+                    
+                
+                }
+                catch (Exception e) {
+                    System.err.println(e);
+                    request.setAttribute("msg", "ERROR: imposible validar al usuario");
+                }
+                
+                
+                
+                
+                
+                vista="/WEB-INF/vistas/vista_comentarios.jsp";
+                
+            break;
                 
             // Otros case
             default:

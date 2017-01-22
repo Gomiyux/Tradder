@@ -114,7 +114,7 @@
                      <c:if test="${sessionScope.nuevouser!=null}">
                          <div class="alert alert-success" id="articulo_publicado" role="alert">¡Cuenta creada con exito!</div>
                      </c:if>
-                     <c:if test="${spplicationScope.wrong_user!=null}">
+                     <c:if test="${applicationScope.wrong_user!=null}">
                          <div class="alert alert-danger" id="articulo_publicado" role="alert">¡Vaya, parece que no existe esa combinación de usuario y contraseña!</div>
                      </c:if>
                     </div>

@@ -107,6 +107,7 @@
                                         <c:if test="${applicationScope.wrong_user!=null}">
                                             <div class="alert alert-danger" id="articulo_publicado" role="alert">¡Vaya, parece que no existe esa combinación de usuario y contraseña!</div>
                                         </c:if>
+                                        <div style="display:none" class="alert alert-success" id="comentario_publicado" role="alert">¡Comentario guardado satisfactoriamente!</div>    
                                     </div>
                                 </div>
                                 <!-- /. ROW  -->
@@ -156,155 +157,120 @@
                                     <div class="col-md-1"></div>
                                 </section>                
 
-                                                    <c:choose>	
-                                                        <c:when test="${sessionScope.user==null}">
-                                                            <section style="margin-top: 20px;" class="row">
-                                                                <div class="col-md-1"></div>
-                                                                <div class="alert alert-warning col-md-10 text-center" role="alert">
-                                                                   Debes iniciar sesión para poder comentar ¿No tienes una cuenta?  <a href="/COQUEBA/controlador/alta" class="alert-link">REGISTRATE</a> es gratis.
+                                <c:choose>	
+                                    <c:when test="${sessionScope.user==null}">
+                                        <section style="margin-top: 20px;" class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="alert alert-warning col-md-10 text-center" role="alert">
+                                                Debes iniciar sesión para poder comentar ¿No tienes una cuenta?  <a href="/COQUEBA/controlador/alta" class="alert-link">REGISTRATE</a> es gratis.
+                                            </div>
+                                            <div class="col-md-1"></div>
+                                        </section>
+
+                                    </c:when>
+                                    <c:otherwise>
+                                        <section style="margin-top: 20px;" class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="well well-lg col-md-10">
+                                                <strong>Publicar un comentario:</strong>
+                                                <form id="formulario_comentario">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <br> 
+                                                                <div class="form-group">                                                                                
+                                                                    <textarea style="width:100%;" class="form-control" rows="6" id="comment"></textarea>
                                                                 </div>
-                                                                <div class="col-md-1"></div>
-                                                            </section>
-                                                            
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            <section style="margin-top: 20px;" class="row">
-                                                                <div class="col-md-1"></div>
-                                                                <div class="well well-lg col-md-10">
-                                                                    <strong>Publicar un comentario:</strong>
-                                                                    <div class="row">
-                                                                        <div class="col-md-6">
-                                                                            <br>
-                                                                            <div class="form-group">                                                                                
-                                                                                <textarea class="form-control" rows="6" id="comment"></textarea>
-                                                                            </div>
-                                                                            
-                                                                        </div>
-                                                                        
-                                                                        <div class="col-md-6">
-                                                                            <strong>Selecciona la privacidad de tu comentario:</strong>
-                                                                            <hr>
-                                                                            <div class="radio">
-                                                                                <label><input type="radio" name="comentarioradio">Publico <i>(Todo el mundo verá este comentario)</i></label>
-                                                                            </div>
-                                                                            <div class="radio">
-                                                                                <label><input type="radio" name="comentarioradio">Vendedor <i>(Solo tu y el vendedor vereis el comentario)</i></label>
-                                                                            </div>
-                                                                            <div class="radio">
-                                                                                <label><input type="radio" name="comentarioradio">Personal <i>(Nadie excepto tu verá este comentario)</i></label>
-                                                                            </div>
-                                                                            <hr>
-                                                                            
-                                                                        </div>
+
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <strong>Selecciona la privacidad de tu comentario:</strong>
+                                                            <hr>
+                                                                <div class="radio">
+                                                                    <label><input type="radio" value="Publico" id="radiopublico" name="comentarioradio" checked>Publico <i>(Todo el mundo verá este comentario)</i></label>
+                                                                </div>
+                                                                <div class="radio">
+                                                                    <label><input type="radio" value="Vendedor" id="radiovendedor" name="comentarioradio">Vendedor <i>(Solo tu y el vendedor vereis el comentario)</i></label>
+                                                                </div>
+                                                                <div class="radio">
+                                                                    <label><input type="radio" value="Personal" id="radiopersonal" name="comentarioradio">Personal <i>(Nadie excepto tu verá este comentario)</i></label>
+                                                                </div>
+                                                                <hr>
+
+                                                                    </div>
                                                                     </div>
                                                                     <div class="row text-center">
-                                                                        <button type="button" class="btn btn-warning btn-md">Enviar Comentario</button>
+                                                                        <button type="button" onclick="enviar_comentario(${requestScope.articuloDetalle.id})" class="btn btn-warning btn-md">Enviar Comentario</button>
                                                                     </div>
+                                                                    </form>
+                                                                    </div>
+                                                                    <div class="col-md-1"></div>
+                                                                    </section>
+                                                                </c:otherwise>                                
+                                                            </c:choose>	   
+
+
+                                                            <section class="row" style="margin-top: 30px;"> <!-- SECCION DE COMENTARIOS DEL ARTICULO -->
+                                                                <div class="col-md-1" style="display:inline;"></div>
+                                                                <div class="panel panel-danger col-md-10" style="padding-bottom: 40px;">
+                                                                    <div class="panel-heading text-center" style="background-color: #C90000; color :white;"><span style="background-color: white; color: black" id="numero_comentarios" class="badge"> ${sessionScope.num_comentarios}</span> COMENTARIOS</div>  
+                                                                    <hr>
+                                                                        <div id="comment_wrapper">
+                                                                            <c:if test="${sessionScope.comentarios!=null}">
+                                                                                <c:forEach var="comentario" items="${sessionScope.comentarios}">
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-1"></div>
+                                                                                        <div class="media col-md-10">
+                                                                                            <div class="media-left">
+                                                                                                <a href="#">
+                                                                                                    <img class="media-object" src="/COQUEBA/assets/img/user.png" style="width:64px; height: 64px;" alt="">
+                                                                                                </a>
+                                                                                            </div>
+                                                                                            <div class="media-body">
+
+                                                                                                <h4 class="media-heading"><strong>${comentario.autor.nombre}</strong></h4>
+                                                                                                <p>${comentario.texto}</p>
+
+                                                                                                <div class="text-right">
+                                                                                                    <img style="width:100px; height: 18px;" src="/COQUEBA/assets/img/five-stars.png">
+                                                                                                </div>
+                                                                                                <p class="text-right" style="font-size: 1em;">2017</p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <hr>
+                                                                                </c:forEach>   
+                                                                                
+                                                                                
+                                                                            </c:if>                                                                            
+                                                                        </div>
+                                                                       
                                                                 </div>
                                                                 <div class="col-md-1"></div>
-                                                            </section>
-                                                        </c:otherwise>                                
-                                                    </c:choose>	   
 
-
-                                <section class="row" style="margin-top: 30px;"> <!-- SECCION DE COMENTARIOS DEL ARTICULO -->
-                                    <div class="col-md-1" style="display:inline;">
-
-                                    </div>
-                                    <div class="panel panel-danger col-md-10" style="padding-bottom: 40px;">
-                                        <div class="panel-heading text-center" style="background-color: #C90000; color :white;"><span style="color:white;" class="badge">3</span> COMENTARIOS</div>  
-                                        <hr>
-                                            <div class="row">
-                                                <div class="col-md-1"></div>
-                                                <div class="media col-md-10">
-                                                    <div class="media-left">
-                                                        <a href="#">
-                                                            <img class="media-object" src="/COQUEBA/assets/img/user.png" style="width:64px; height: 64px;" alt="">
-                                                        </a>
-                                                    </div>
-                                                    <div class="media-body">
-
-                                                        <h4 class="media-heading"><strong>USUARIO 2</strong></h4>
-                                                        <p>Este es el comentario 1 del usuario 2</p>
-
-                                                        <div class="text-right">
-                                                            <img style="width:100px; height: 18px;" src="/COQUEBA/assets/img/five-stars.png">
-                                                        </div>
-                                                        <p class="text-right" style="font-size: 1em;">18/01/2017</p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-1"></div>
-                                            </div>
-                                            <hr>
-                                                <div class="row">
-                                                    <div class="col-md-1"></div>
-                                                    <div class="media col-md-10">
-                                                        <div class="media-left">
-                                                            <a href="#">
-                                                                <img class="media-object" src="/COQUEBA/assets/img/user.png" style="width:64px; height: 64px;" alt="">
-                                                            </a>
-                                                        </div>
-                                                        <div class="media-body">
-
-                                                            <h4 class="media-heading"><strong>USUARIO 2</strong></h4>
-                                                            <p>Este es el comentario 1 del usuario 3</p>
-
-                                                            <div class="text-right">
-                                                                <img style="width:100px; height: 18px;" src="/COQUEBA/assets/img/five-stars.png">
-                                                            </div>
-                                                            <p  class="text-right" style="font-size: 1em;">18/01/2017</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-1"></div>
-                                                </div>
-                                                <hr>
-                                                    <div class="row">
-                                                        <div class="col-md-1"></div>
-                                                        <div class="media col-md-10">
-                                                            <div class="media-left">
-                                                                <a href="#">
-                                                                    <img class="media-object" src="/COQUEBA/assets/img/user.png" style="width:64px; height: 64px;" alt="">
-                                                                </a>
-                                                            </div>
-                                                            <div class="media-body">
-
-                                                                <h4 class="media-heading"><strong>USUARIO 2</strong></h4>
-                                                                <p>Este es el comentario 1 del usuario 3</p>
-
-                                                                <div class="text-right">
-                                                                    <img style="width:100px; height: 18px;" src="/COQUEBA/assets/img/five-stars.png">
-                                                                </div>
-                                                                <p class="text-right" style="font-size: 1em;">18/01/2017</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-1"></div>
-                                                    </div>
-                                                    </div>
-                                                    <div class="col-md-1"></div>
-
-                                                    </section>    
+                                                            </section>    
 
 
 
-                                                    </div>
-                                                    <!-- /. PAGE INNER  -->
-                                                    </div>
-                                                    <!-- /. PAGE WRAPPER  -->
+                                                                                </div>
+                                                                                <!-- /. PAGE INNER  -->
+                                                                                </div>
+                                                                                <!-- /. PAGE WRAPPER  -->
 
 
-                                                    <!-- /. WRAPPER  -->
+                                                                                <!-- /. WRAPPER  -->
 
 
-                                                    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
-                                                    <!-- JQUERY SCRIPTS -->
-                                                    <script src="/COQUEBA/assets/js/jquery-1.10.2.js"></script>
-                                                    <!-- BOOTSTRAP SCRIPTS -->
-                                                    <script src="/COQUEBA/assets/js/bootstrap.min.js"></script>
-                                                    <!-- METISMENU SCRIPTS -->
-                                                    <script src="/COQUEBA/assets/js/jquery.metisMenu.js"></script>
-                                                    <!-- CUSTOM SCRIPTS -->
-                                                    <script src="/COQUEBA/assets/js/custom.js"></script>
+                                                                                <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+                                                                                <!-- JQUERY SCRIPTS -->
+                                                                                <script src="/COQUEBA/assets/js/jquery-1.10.2.js"></script>
+                                                                                <!-- BOOTSTRAP SCRIPTS -->
+                                                                                <script src="/COQUEBA/assets/js/bootstrap.min.js"></script>
+                                                                                <!-- METISMENU SCRIPTS -->
+                                                                                <script src="/COQUEBA/assets/js/jquery.metisMenu.js"></script>
+                                                                                <!-- CUSTOM SCRIPTS -->
+                                                                                <script src="/COQUEBA/assets/js/custom.js"></script>
+                                                                                <script src="/COQUEBA/assets/js/ajax.js"></script>
 
-
-                                                    </body>
-                                                    </html>
+                                                                                </body>
+                                                                                </html>

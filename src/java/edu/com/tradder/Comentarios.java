@@ -11,11 +11,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author SebaL
  */
+@NamedQueries({
+    @NamedQuery(name="Comentarios.findAll",	query="SELECT a FROM Comentarios a"),
+    @NamedQuery(name="Comentarios.findById",	query="SELECT a FROM Comentarios a WHERE a.articulo.id = :id_articulo")
+})
 @Entity
 public class Comentarios implements Serializable {
     private static final long serialVersionUID = 1L;

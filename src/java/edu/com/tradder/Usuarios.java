@@ -10,9 +10,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
-@NamedQuery(name="Usuarios.findByNameAndPass",	query="SELECT u FROM Usuarios u WHERE u.email = :name AND u.password = :pwd")
+
+
+@NamedQueries({@NamedQuery(name="Usuarios.findByName",	query="SELECT u FROM Usuarios u WHERE u.email = :name AND u.password = :pwd"),
+@NamedQuery(name="Usuarios.findByNameAndPass",	query="SELECT u FROM Usuarios u WHERE u.email = :name AND u.password = :pwd"),
+@NamedQuery(name="Usuarios.findById",	query="SELECT u FROM Usuarios u WHERE u.id = :id")
+})
+
 /**
  *
  * @author SebaL

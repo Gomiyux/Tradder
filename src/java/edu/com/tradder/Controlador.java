@@ -66,13 +66,18 @@ public class Controlador extends HttpServlet {
         HttpSession session = request.getSession();
         
         session.removeAttribute("marca_favorito");
+        session.removeAttribute("comentarios");
         session.removeAttribute("borra_favorito");
         session.removeAttribute("sube_articulo");
         session.removeAttribute("nuevouser");
         session.removeAttribute("wrong_user");
         ServletContext context = request.getSession().getServletContext();
         
-        if(i!=0){context.removeAttribute("wrong_user"); i=0;}
+        if(i!=0){
+            context.removeAttribute("wrong_user"); 
+            context.removeAttribute("nuevouser");
+            i=0;
+        }
         
         
         switch (accion) {
@@ -179,7 +184,7 @@ public class Controlador extends HttpServlet {
                         u.setPassword(pass_digest);
                         persist(u);
                         request.setAttribute("msg", "Usuario guardado");
-                        session.setAttribute("nuevouser", "yes");
+                        context.setAttribute("nuevouser", "yes");
                     }
                 } catch (Exception e) {
                     request.setAttribute("msg", "ERROR: Usuario NO guardado");
@@ -257,6 +262,8 @@ public class Controlador extends HttpServlet {
                 //
                 session.removeAttribute("id");
                 session.removeAttribute("user");
+                session.removeAttribute("usuario");
+                session.removeAttribute("comentarios");
                 request.setAttribute("msg", "Usuario desconectado");
                 vista = "/controlador/home";
                 break;
@@ -336,6 +343,9 @@ public class Controlador extends HttpServlet {
                 break; 
                 
             case "/detalles" :
+                
+                
+                
                 String aux4 = request.getParameter("id");
                 Long idDet = Long.parseLong(aux4);
                 Articulos artDet= new Articulos();
@@ -345,11 +355,79 @@ public class Controlador extends HttpServlet {
                 
                 artDet = resultDet.get(0);
                 
-                TypedQuery<Comentarios> comentario_auxiliar = em.createNamedQuery("Comentarios.findById", Comentarios.class);
-                comentario_auxiliar.setParameter("id_articulo", Long.parseLong(aux4));
-                List<Comentarios> lista_comentarios= comentario_auxiliar.getResultList();
-                session.setAttribute("comentarios", lista_comentarios);
-                session.setAttribute("num_comentarios", lista_comentarios.size());
+                
+                
+                if(request.getSession().getAttribute("usuario")==null){
+                    
+                    TypedQuery<Comentarios> comentario_auxiliar = em.createNamedQuery("Comentarios.findByIdAndPrivacy", Comentarios.class);
+                    comentario_auxiliar.setParameter("id_articulo", Long.parseLong(aux4));
+                    comentario_auxiliar.setParameter("privacidad", "Publico");
+                    List<Comentarios> lista_comentarios= comentario_auxiliar.getResultList();
+                    session.setAttribute("comentarios", lista_comentarios);
+                    session.setAttribute("num_comentarios", lista_comentarios.size());
+                    
+                }
+                
+                else{
+                    
+                    
+                    
+                    TypedQuery<Comentarios> comentario_auxiliar = em.createNamedQuery("Comentarios.findByIdAndPrivacy", Comentarios.class);
+                    comentario_auxiliar.setParameter("id_articulo", Long.parseLong(aux4));
+                    comentario_auxiliar.setParameter("privacidad", "Publico");
+                    
+                    
+                    
+                    
+                    TypedQuery<Comentarios> comentario_auxiliar2 = em.createNamedQuery("Comentarios.findByIdAndPrivacyAndAutor", Comentarios.class);
+                    comentario_auxiliar2.setParameter("id_articulo", Long.parseLong(aux4));
+                    comentario_auxiliar2.setParameter("privacidad", "Personal");
+                    Usuarios aux_us = (Usuarios) request.getSession().getAttribute("usuario");
+                    comentario_auxiliar2.setParameter("autor",  aux_us);
+                    
+                    TypedQuery<Comentarios> comentario_auxiliar3 = em.createNamedQuery("Comentarios.findByIdAndPrivacy", Comentarios.class);
+                    comentario_auxiliar3.setParameter("id_articulo", Long.parseLong(aux4));
+                    comentario_auxiliar3.setParameter("privacidad", "Vendedor");
+                    
+                   
+                    
+                    
+                    List<Comentarios> lista_comentarios= comentario_auxiliar.getResultList();
+                    List<Comentarios> lista_comentarios2= comentario_auxiliar2.getResultList();
+                    List<Comentarios> lista_comentarios3= comentario_auxiliar3.getResultList();
+                    
+                   
+                     System.out.println("El tamaño de la lista3 es: " + lista_comentarios3.size());
+                    
+                    
+                    List<Comentarios> lista_comentarios_final = new ArrayList();
+                    
+                    lista_comentarios_final.addAll(lista_comentarios);
+                    lista_comentarios_final.addAll(lista_comentarios2);
+                    
+                    
+                   
+                    
+                    for (int j = 0; j < lista_comentarios3.size(); j++) {
+                        
+                        
+                        System.out.println("Seba homo1");
+                        
+                        if(lista_comentarios3.get(j).getAutor().getId()==aux_us.getId() || lista_comentarios3.get(j).getArticulo().getPropietario().getId()==aux_us.getId()){
+                            lista_comentarios_final.add(lista_comentarios3.get(j));
+                            System.out.println("seba hhomo2");
+                            
+                        }
+                        
+                    }
+                    
+                    session.setAttribute("comentarios", lista_comentarios_final);
+                    session.setAttribute("num_comentarios", lista_comentarios_final.size());
+                    
+                    
+                }
+                
+                
                 
                 request.setAttribute("articuloDetalle", artDet);
 
@@ -494,8 +572,6 @@ public class Controlador extends HttpServlet {
             case"/guardar_comentario":
                 
                 
-               
-                
                 TypedQuery<Articulos> articulos_comentarios = em.createNamedQuery("Articulos.Seleccionar", Articulos.class);
                 
                 articulos_comentarios.setParameter("id_art", Long.parseLong(request.getParameter("id_articulo")));
@@ -514,9 +590,7 @@ public class Controlador extends HttpServlet {
                
                 try{
                     
-                
-                
-                    
+                Long aux5 = Long.parseLong(request.getParameter("id_articulo"));
                 Comentarios comentario = new Comentarios();
                 comentario.setArticulo(articulo_comentario);
                 comentario.setAutor(usuario_comentario);
@@ -524,11 +598,59 @@ public class Controlador extends HttpServlet {
                 comentario.setTexto(texto);
                 persist(comentario);
                     
-                    TypedQuery<Comentarios> comentario_auxiliar2 = em.createNamedQuery("Comentarios.findById", Comentarios.class);
-                    comentario_auxiliar2.setParameter("id_articulo", Long.parseLong(request.getParameter("id_articulo")));
+                
+                
+                    TypedQuery<Comentarios> comentario_auxiliar = em.createNamedQuery("Comentarios.findByIdAndPrivacy", Comentarios.class);
+                    comentario_auxiliar.setParameter("id_articulo", aux5);
+                    comentario_auxiliar.setParameter("privacidad", "Publico");
+                    
+                    
+                    
+                    
+                    TypedQuery<Comentarios> comentario_auxiliar2 = em.createNamedQuery("Comentarios.findByIdAndPrivacyAndAutor", Comentarios.class);
+                    comentario_auxiliar2.setParameter("id_articulo", aux5);
+                    comentario_auxiliar2.setParameter("privacidad", "Personal");
+                    Usuarios aux_us = (Usuarios) request.getSession().getAttribute("usuario");
+                    comentario_auxiliar2.setParameter("autor",  aux_us);
+                    
+                    TypedQuery<Comentarios> comentario_auxiliar3 = em.createNamedQuery("Comentarios.findByIdAndPrivacy", Comentarios.class);
+                    comentario_auxiliar3.setParameter("id_articulo", aux5);
+                    comentario_auxiliar3.setParameter("privacidad", "Vendedor");
+                    
+                   
+                    
+                    
+                    List<Comentarios> lista_comentarios= comentario_auxiliar.getResultList();
                     List<Comentarios> lista_comentarios2= comentario_auxiliar2.getResultList();
-                    session.setAttribute("comentarios", lista_comentarios2);
-                    session.setAttribute("num_comentarios", lista_comentarios2.size());
+                    List<Comentarios> lista_comentarios3= comentario_auxiliar3.getResultList();
+                    
+                   
+                     System.out.println("El tamaño de la lista3 es: " + lista_comentarios3.size());
+                    
+                    
+                    List<Comentarios> lista_comentarios_final = new ArrayList();
+                    
+                    lista_comentarios_final.addAll(lista_comentarios);
+                    lista_comentarios_final.addAll(lista_comentarios2);
+                    
+                    
+                   
+                    
+                    for (int j = 0; j < lista_comentarios3.size(); j++) {
+                        
+                        
+                        System.out.println("Seba homo1");
+                        
+                        if(lista_comentarios3.get(j).getAutor().getId()==aux_us.getId() || lista_comentarios3.get(j).getArticulo().getPropietario().getId()==aux_us.getId()){
+                            lista_comentarios_final.add(lista_comentarios3.get(j));
+                            System.out.println("seba hhomo2");
+                            
+                        }
+                        
+                    }
+                    
+                    session.setAttribute("comentarios", lista_comentarios_final);
+                    session.setAttribute("num_comentarios", lista_comentarios_final.size());
                     
                 
                 }

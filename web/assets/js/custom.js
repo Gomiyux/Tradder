@@ -247,7 +247,7 @@ function validar(){
         div_nombre.classList.add("has-error");
     };
     
-    if (f.password1!==f.password2){
+    if (f.password1.value!==f.password2.value){
             ok=false;
             spanClave.innerHTML="*Las claves no coincide";
             div_clave.classList.add("has-error");      

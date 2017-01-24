@@ -20,7 +20,9 @@ import javax.persistence.NamedQuery;
  */
 @NamedQueries({
     @NamedQuery(name="Comentarios.findAll",	query="SELECT a FROM Comentarios a"),
-    @NamedQuery(name="Comentarios.findById",	query="SELECT a FROM Comentarios a WHERE a.articulo.id = :id_articulo")
+    @NamedQuery(name="Comentarios.findById",	query="SELECT a FROM Comentarios a WHERE a.articulo.id = :id_articulo"),
+    @NamedQuery(name="Comentarios.findByIdAndPrivacy",	query="SELECT a FROM Comentarios a WHERE a.articulo.id = :id_articulo and a.privacidad = :privacidad"),
+    @NamedQuery(name="Comentarios.findByIdAndPrivacyAndAutor",	query="SELECT a FROM Comentarios a WHERE a.articulo.id = :id_articulo and a.privacidad = :privacidad and a.autor= :autor")   
 })
 @Entity
 public class Comentarios implements Serializable {

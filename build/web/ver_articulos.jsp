@@ -70,7 +70,12 @@
             <div class="sidebar-collapse">
                 <ul class="nav text-center" id="main-menu">
 		  <li class="text-center">
+                    <c:if test="${sessionScope.user==null}">    
                     <img src="/COQUEBA/assets/img/find_user.png" class="user-image img-responsive"/>
+                    </c:if>
+                    <c:if test="${sessionScope.user!=null}">
+                        <img class="img-circle" style="width:100px;height:100px; margin-top: 20px; margin-bottom: 20px;" src="/COQUEBA/assets/img_users/${sessionScope.user}.jpg" alt="" />
+                    </c:if>
 					</li>
                     
                     <li>

@@ -73,7 +73,12 @@
                             <div class="sidebar-collapse">
                                 <ul class="nav text-center" id="main-menu">
                                     <li class="text-center">
+                                        <c:if test="${sessionScope.user==null}">    
                                         <img src="/COQUEBA/assets/img/find_user.png" class="user-image img-responsive"/>
+                                        </c:if>
+                                        <c:if test="${sessionScope.user!=null}">
+                                            <img class="img-circle" style="width:100px;height:100px; margin-top: 20px; margin-bottom: 20px;" src="/COQUEBA/assets/img_users/${sessionScope.user}.jpg" alt="" />
+                                        </c:if>
                                     </li>
 
                                     <li>
@@ -111,7 +116,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <h2 style="font-family: 'Chewy', cursive;">Registrarse</h2>   
-                                        
+
                                         <c:if test="${applicationScope.wrong_user!=null}">
                                             <div class="alert alert-danger" id="articulo_publicado" role="alert">¡Vaya, parece que no existe esa combinación de usuario y contraseña!</div>
                                         </c:if>
@@ -124,7 +129,7 @@
 
                                 <section  style="margin-bottom: 100px; margin-top: 1%;">     
 
-                                    <form id="f"  onsubmit="return validar();" action="/COQUEBA/controlador/guardar" style="margin-left: 5%;">
+                                    <form id="f"  onsubmit="return validar();" enctype="multipart/form-data" method="POST" action="/COQUEBA/controlador/guardar" style="margin-left: 5%;">
                                         <section class="container-fluid">                  
                                             <fieldset class="col-sm-6">
 
@@ -162,7 +167,10 @@
                                                 <div class="form-group input-group">                   
                                                     <span class="glyphicon glyphicon-globe input-group-addon"></span>
                                                     <input style="margin-top: 2px;" type="url" class="form-control" placeholder="Facebook" name="fb"></div><br>
-
+                                                    <div class="form-group" id="div_user_foto">
+                                                        <label>Selecciona tu imagen de perfil</label>
+                                                        <input name="file2" type="file" id="adjuntar_foto_user" accept="image/png,image/jpg,image/jpeg">
+                                                    </div>                
                                                     <br><br>                                                         
                                                             </fieldset>
 

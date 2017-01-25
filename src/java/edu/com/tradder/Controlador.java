@@ -6,6 +6,7 @@
 package edu.com.tradder;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -185,6 +186,80 @@ public class Controlador extends HttpServlet {
                         persist(u);
                         request.setAttribute("msg", "Usuario guardado");
                         context.setAttribute("nuevouser", "yes");
+                        
+                        final Part filePart = request.getPart("file2");
+                        System.out.println(filePart.getSize());
+                        System.out.println(filePart.getName());
+                        if (filePart.getSize()!=0) {
+
+                            /*
+                            String nombre = filePart.getName();
+                            Long tamano = filePart.getSize();
+                            String file = filePart.getSubmittedFileName();
+                            */
+                            
+                            String relativePathFolder = "../../web/assets/img_users";
+                            String absolutePathFolder = getServletContext().getRealPath(relativePathFolder);                           
+                            
+                            File f = new File(absolutePathFolder + File.separator + email+".jpg");
+                            
+                            OutputStream p = new FileOutputStream(f);
+                            InputStream filecontent;
+                            filecontent = filePart.getInputStream();
+                            
+                            int read = 0;
+                            final byte[] bytes = new byte[1024];
+                            while ((read = filecontent.read(bytes)) != -1) {
+                                p.write(bytes, 0, read);
+                            }
+
+                            p.close();
+                            filecontent.close();
+                            
+                        }
+                        else{
+                            
+                            System.out.println("LLLLEGOOOOOOS");
+                            
+                            String relativePathFolder = "../../web/assets/img_users";
+                            String absolutePathFolder = getServletContext().getRealPath(relativePathFolder);                           
+                            
+                            File f = new File(absolutePathFolder + File.separator + email+".jpg");
+                            
+                            OutputStream p = new FileOutputStream(f);
+                            InputStream filecontent;
+                            filecontent = new FileInputStream(new File(absolutePathFolder + File.separator + "user.png"));
+                            
+                            int read = 0;
+                            final byte[] bytes = new byte[1024];
+                            while ((read = filecontent.read(bytes)) != -1) {
+                                p.write(bytes, 0, read);
+                            }
+
+                            p.close();
+                            filecontent.close();
+                            
+                            /*
+                            System.out.println("He entrado");
+                            
+                            InputStream is = null;
+                            OutputStream os = null;
+                            try {
+                                is = new FileInputStream(new File("../../web/assets/img_users/user.png"));
+                                os = new FileOutputStream(new File("../../web/assets/img_users/"+email+".png"));
+                                byte[] buffer = new byte[1024];
+                                int length;
+                                while ((length = is.read(buffer)) > 0) {
+                                    os.write(buffer, 0, length);
+                                }
+                            } finally {
+                                is.close();
+                                os.close();
+                            }
+                            */
+                           
+                        }
+                        
                     }
                 } catch (Exception e) {
                     request.setAttribute("msg", "ERROR: Usuario NO guardado");

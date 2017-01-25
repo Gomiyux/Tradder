@@ -11,9 +11,9 @@
         <div class="col-md-1"></div>
         <div class="media col-md-10">
             <div class="media-left">
-                <a href="#">
-                    <img class="media-object" src="/COQUEBA/assets/img/user.png" style="width:64px; height: 64px;" alt="">
-                </a>
+                
+                    <img class="media-object img-circle" src="/COQUEBA/assets/img_users/${comentario.autor.email}.jpg" style="width:64px; height: 64px;" >
+                
             </div>
             <div class="media-body">
 

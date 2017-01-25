@@ -11,9 +11,14 @@
                                                 <h2 style="font-family: 'Chewy', cursive;">${art2.nombre}</h2>
                                                 
                                                 <form class="container-fluid row" style="margin-bottom: 3%;">
-                                                    <p class="col-md-1" name="p_${art2.id}" style="color: white; display:none;">${art2.id}</p>
-                                                    <div class="col-md-4"></div>                  
-                                                     <a  href="/COQUEBA/controlador/addFavoritos?id=${art2.id}"><span class='glyphicon glyphicon-heart btn btn-danger col-md-2' style='font-size: 2em; margin: 1%;'></span></a>
+                                                    <p class="col-md-1" name="p_${art.id}" style="color: white; display:none;">${art2.id}</p>
+                                                    <div class="col-md-4"></div> 
+                                                    <c:if test="${sessionScope.user==null}">
+                                                        <a id="registrate"  title="Registrate para añadir favoritos" ><span class='glyphicon glyphicon-heart btn btn-default col-md-2' style='font-size: 2em; margin: 1%;'></span></a>
+                                                    </c:if>
+                                                    <c:if test="${sessionScope.user!=null}">
+                                                        <a  href="/COQUEBA/controlador/addFavoritos?id=${art2.id}"><span class='glyphicon glyphicon-heart btn btn-danger col-md-2' style='font-size: 2em; margin: 1%;'></span></a>
+                                                    </c:if>                                                    
                                                      <a  href="/COQUEBA/controlador/detalles?id=${art2.id}"><span class='glyphicon glyphicon-info-sign btn btn-warning col-md-2' style='font-size: 2em; margin: 1%;'></span></a>                                                
                                                 </form>
                                             </div>

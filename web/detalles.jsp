@@ -66,7 +66,12 @@
                             <div class="sidebar-collapse">
                                 <ul class="nav text-center" id="main-menu">
                                     <li class="text-center">
+                                        <c:if test="${sessionScope.user==null}">    
                                         <img src="/COQUEBA/assets/img/find_user.png" class="user-image img-responsive"/>
+                                        </c:if>
+                                        <c:if test="${sessionScope.user!=null}">
+                                            <img class="img-circle" style="width:100px;height:100px; margin-top: 20px; margin-bottom: 20px;" src="/COQUEBA/assets/img_users/${sessionScope.user}.jpg" alt="" />
+                                        </c:if>
                                     </li>
 
                                     <li>
@@ -222,13 +227,13 @@
                                                                                         <div class="col-md-1"></div>
                                                                                         <div class="media col-md-10">
                                                                                             <div class="media-left">
-                                                                                                <a href="#">
-                                                                                                    <img class="media-object" src="/COQUEBA/assets/img/user.png" style="width:64px; height: 64px;" alt="">
-                                                                                                </a>
+
+                                                                                                    <img class="media-object img-circle" src="/COQUEBA/assets/img_users/${comentario.autor.email}.jpg" style="width:100px; height: 100px;" >
+
                                                                                             </div>
                                                                                             <div class="media-body">
 
-                                                                                                <h4 class="media-heading"><strong>${comentario.autor.nombre}</strong></h4>
+                                                                                                <h4 style="margin-left: 20px;" class="media-heading"><strong>${comentario.autor.nombre}</strong></h4>
                                                                                                 <p>${comentario.texto}</p>
 
                                                                                                 <div class="text-right">

@@ -73,9 +73,14 @@
                 <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav text-center" id="main-menu">
-				<li class="text-center">
+                    <li class="text-center">
+                    <c:if test="${sessionScope.user==null}">    
                     <img src="/COQUEBA/assets/img/find_user.png" class="user-image img-responsive"/>
-					</li>
+                    </c:if>
+                    <c:if test="${sessionScope.user!=null}">
+                        <img class="img-circle" style="width:100px;height:100px; margin-top: 20px; margin-bottom: 20px;" src="/COQUEBA/assets/img_users/${sessionScope.user}.jpg" alt="" />
+                    </c:if>
+		    </li>
                     
                     <li>
                         <a  style="background:#d9534f; " href="/COQUEBA/controlador/home" ><span style=" vertical-align: middle; "  class="fa-3x glyphicon glyphicon-home" aria-hidden="true"></span>   Home</a>

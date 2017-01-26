@@ -12,12 +12,12 @@
         <div class="media col-md-10">
             <div class="media-left">
                 
-                    <img class="media-object img-circle" src="/COQUEBA/assets/img_users/${comentario.autor.email}.jpg" style="width:64px; height: 64px;" >
+                    <img class="media-object img-circle" src="/COQUEBA/assets/img_users/${comentario.autor.email}.jpg" style="width:100px; height: 100px;" >
                 
             </div>
             <div class="media-body">
 
-                <h4 class="media-heading"><strong>${comentario.autor.nombre}</strong></h4>
+                <h4 style="color:#C90000" class="media-heading"><strong>${comentario.autor.nombre}</strong></h4>
                 <p>${comentario.texto}</p>
 
                 <div class="text-right">

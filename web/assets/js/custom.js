@@ -289,7 +289,7 @@ function validarPublicacion(){
     var div_precio= document.getElementById("div_art_precio");
     div_precio.classList.remove("has-error");
     var div_foto= document.getElementById("div_art_foto");
-    var ok2=false;
+    var ok2=true;
     var f2 = document.getElementById("f2");
     
     if(f2.file1.value!=""){
@@ -321,12 +321,14 @@ function validarPublicacion(){
         ok2=false;
         spanFoto.innerHTML="*Imagen Requerida";
     }
+    
     else{   
+        /*
         if (extension!="jpg" && extension!="jpeg" && extension!="png") {
             ok2=false;
             spanFoto.innerHTML="*Formato no compatible (Debe ser .jpg, .jpg o .png)";
         };
-
+            */
         if (sizeArch > 5242880) {
             ok2=false;
             spanFoto.innerHTML="*La imagen no puede superar los 5Mb";

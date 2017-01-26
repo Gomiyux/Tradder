@@ -118,7 +118,36 @@
                     <div class="col-md-12">
                      <h2 style="font-family: 'Chewy', cursive;" >Home</h2>   
                      <c:if test="${applicationScope.wrong_user!=null}">
-                         <div class="alert alert-danger" id="articulo_publicado" role="alert">¡Vaya, parece que no existe esa combinación de usuario y contraseña!</div>
+                         <div class="alert alert-danger" id="articulo_publicado" role="alert">¡Vaya, parece que no existe esa combinación de usuario y contraseña! 
+                             <strong>
+                                 <button style="margin-left: 10px;" type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Recuperar Contraseña</button>
+                             
+                                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                                    <div class="modal-dialog" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                          <h4 class="modal-title" id="exampleModalLabel"><Strong>Recuperar contraseña</Strong></h4>
+                                        </div>
+                                        <div style="color:black;" class="well well-sm">Recibiras una nueva contraseña en tu bandeja de entrada</div>
+                                        <div class="modal-body">
+                                          <form>
+                                            <div class="form-group">
+                                              <label for="recipient-name" class="control-label">Correo Electronico</label>
+                                              <input type="text" class="form-control" id="new_pass_email">
+                                            </div>
+                                            
+                                          </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                          <button onclick="nueva_contraseña();" type="button" style="color:black;" class="btn btn-warning">Enviar email</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                              </div>
+                             </strong>
+                         </div>
                      </c:if>
                       <c:if test="${applicationScope.nuevouser!=null}">
                            <div class="alert alert-success" id="articulo_publicado" role="alert">¡Cuenta creada con exito!</div>
@@ -220,7 +249,7 @@
                             </c:forEach>
                         </c:when>
                         <c:otherwise>
-                              <p>No hay Artículos</p>
+                              
                         </c:otherwise>                
                   </c:choose>            
                    </div>               
@@ -256,6 +285,8 @@
     <script src="/COQUEBA/assets/js/jquery.metisMenu.js"></script>
       <!-- CUSTOM SCRIPTS -->
     <script src="/COQUEBA/assets/js/custom.js"></script>
+    <script src="/COQUEBA/assets/js/ajax.js"></script>
+
     
    
 </body>

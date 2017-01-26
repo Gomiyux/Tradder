@@ -7,8 +7,8 @@
         <span class="input-group-addon">@</span>
         <input type="email" class="form-control" id="email" onchange="validarEmail_AJAX()" placeholder="E-mail" name="correo"></div> 
     </c:if>
-    <c:if test="${sessionScope.malEmail==1}"><!--B-->
+<c:if test="${sessionScope.malEmail==1}"><!--B-->
     <div class="form-group input-group">                   
         <span class="input-group-addon">@</span>
         <input type="email" class="form-control" id="email" onchange="validarEmail_AJAX()" placeholder="E-mail" name="correo"></div>
-    </c:if>
+</c:if>

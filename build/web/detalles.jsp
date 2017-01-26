@@ -233,7 +233,7 @@
                                                                                             </div>
                                                                                             <div class="media-body">
 
-                                                                                                <h4 style="margin-left: 20px;" class="media-heading"><strong>${comentario.autor.nombre}</strong></h4>
+                                                                                                <h4 style="color:#C90000" class="media-heading"><strong>${comentario.autor.nombre}</strong></h4>
                                                                                                 <p>${comentario.texto}</p>
 
                                                                                                 <div class="text-right">

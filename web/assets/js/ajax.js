@@ -133,12 +133,14 @@ function validarEmail_AJAX(){
 }
 
 function fin_validarEmail() {
+    
     if (xhr.readyState === 4) {
         if (xhr.status === 200) {        
             var vali =document.getElementById("validar_email");
-            console.log(xhr.responseText[7]);
-            if(xhr.responseText[7]=="M"){
+            console.log(xhr.responseText[10]);
+            if(xhr.responseText[10]=="M"){
                vali.innerHTML = xhr.responseText;     
+            
             }
             else{
                var div_email=document.getElementById("div_form_email");
@@ -148,4 +150,32 @@ function fin_validarEmail() {
         }
     }
 
+}
+
+
+function nueva_contraseña(){
+    
+    init_ajax();
+    var url = "nueva_pass";
+    xhr.open("POST", url, true);
+    xhr.onreadystatechange = fin_nueva_contraseña;
+    
+    var email_enviar =document.getElementById("new_pass_email").value;
+    
+    var datos = "email_enviar=" + encodeURIComponent(email_enviar);
+    
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(datos);
+    
+    }
+    
+ function fin_nueva_contraseña(){
+    
+    if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+            
+                
+            
+        }
+    }   
 }

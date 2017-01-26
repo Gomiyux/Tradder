@@ -169,17 +169,13 @@
                                                     <input style="margin-top: 2px;" type="url" class="form-control" placeholder="Facebook" name="fb"></div><br>
                                                     <div class="form-group" id="div_user_foto">
                                                         <label>Selecciona tu imagen de perfil</label>
+                                                        
                                                         <input name="file2" type="file" id="adjuntar_foto_user" accept="image/png,image/jpg,image/jpeg">
                                                     </div>                
                                                     <br><br>                                                         
                                                             </fieldset>
 
-                                                            <fieldset  style="margin-left: 3%;" class="col-sm-5 text-center"> <!-- /. CAPTCHA  -->
-                                                                <img style="width:250px;height:100px;" src="/COQUEBA/assets/img/captcha.jpg" />
-                                                                <div class="form-group input-group" id="div_form_captcha">                   
-                                                                    <span class="glyphicon glyphicon-qrcode input-group-addon"></span>
-                                                                    <input style="margin-top: 2px;" type="text" class="form-control" placeholder="Captcha" name="jcaptcha"></div>
-                                                            </fieldset>
+                                                            
                                                             </section>
                                                             <input type="submit" class="btn btn-danger btn-lg" style="margin-left: 40%" value="Confirmar">                     
                                                                 </form>

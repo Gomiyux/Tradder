@@ -174,7 +174,7 @@
                                                         </div>
                                                         <div class="radio">
                                                             <label>
-                                                                <input type="radio" name="optionsRadios" id="procesadores" value="Procesadores"/>Procesadores
+                                                                <input type="radio" name="optionsRadios" id="Otros" value="Otros"/>Otros
                                                             </label>
                                                         </div>
                                                     </div>

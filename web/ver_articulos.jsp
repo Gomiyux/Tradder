@@ -117,7 +117,7 @@
                          <div class="alert alert-success" id="mensaje_fav" role="alert">¡Articulo añadido con exito!</div>
                      </c:if>
                      <c:if test="${applicationScope.wrong_user!=null}">
-                         <div class="alert alert-danger" id="articulo_publicado" role="alert">¡Vaya, parece que no existe esa combinación de usuario y contraseña!</div>
+                         <div class="alert alert-danger" id="articulo_publicado" role="alert">¡Vaya, parece que no existe esa combinación de usuario y contraseña! Si lo deseas puedes <strong><a>Recuperar tu contraseña</a></strong></div>
                      </c:if>    
                      </div>
                 </div>
@@ -149,7 +149,7 @@
                                       <input id="categoria_radio2" type="checkbox" /> GPU
                                   </label>
                                   <label class="checkbox-inline">
-                                      <input  id="categoria_radio3" type="checkbox"/> Procesadores
+                                      <input  id="categoria_radio3" type="checkbox"/> Otros
                                   </label>
                                 </div>
 
@@ -204,7 +204,7 @@
                                 </c:forEach>                         
                         </c:when>
                         <c:otherwise>
-                            <p>No hay Artículos</p>
+                          
                         </c:otherwise>
                     </c:choose>
                   

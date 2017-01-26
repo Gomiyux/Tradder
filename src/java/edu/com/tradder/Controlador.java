@@ -5,6 +5,7 @@
  */
 package edu.com.tradder;
 
+import com.sun.mail.smtp.SMTPTransport;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -13,9 +14,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
@@ -33,6 +36,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import java.io.UnsupportedEncodingException;
+import java.security.Security;
+import java.util.Date;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  *
@@ -174,7 +189,12 @@ public class Controlador extends HttpServlet {
                     }
                     String pass_digest = sb.toString();
                     
-                    if(email != null && pass_digest != null && nombre != null){
+                    TypedQuery<Usuarios> query_email = em.createNamedQuery("Usuarios.findByEmail", Usuarios.class);
+                    query_email.setParameter("emailUnicidad", email);
+                    List<Usuarios> result_email = query_email.getResultList();
+                    
+                    
+                    if(email != null && pass_digest != null && nombre != null && result_email.size()==0){
                         Usuarios u = new Usuarios();
                         u.setCp(cp);
                         u.setDireccion(direccion);
@@ -571,7 +591,7 @@ public class Controlador extends HttpServlet {
                         
                         for (int i = 0; i < lista_articulos.size(); i++) {
                         
-                            if(lista_articulos.get(i).getCategoria().equals("Procesadores")) articulos_aux.add(lista_articulos.get(i));
+                            if(lista_articulos.get(i).getCategoria().equals("Otros")) articulos_aux.add(lista_articulos.get(i));
                         
                         }   
                     
@@ -625,7 +645,7 @@ public class Controlador extends HttpServlet {
 
                             for (int i = 0; i < articulos_aux.size(); i++) {
                         
-                                if(Integer.parseInt(articulos_aux.get(i).getPrecio())>pmenor && Integer.parseInt(articulos_aux.get(i).getPrecio())<pmayor) articulos_final.add(articulos_aux.get(i));
+                                if(Integer.parseInt(articulos_aux.get(i).getPrecio())>=pmenor && Integer.parseInt(articulos_aux.get(i).getPrecio())<=pmayor) articulos_final.add(articulos_aux.get(i));
                         
                             }  
                             
@@ -633,7 +653,7 @@ public class Controlador extends HttpServlet {
                      
                 else{
                     
-                    for (int i = 0; i < lista_articulos.size(); i++) if(Integer.parseInt(lista_articulos.get(i).getPrecio())>pmenor && Integer.parseInt(lista_articulos.get(i).getPrecio())<pmayor) articulos_final.add(lista_articulos.get(i));
+                    for (int i = 0; i < lista_articulos.size(); i++) if(Integer.parseInt(lista_articulos.get(i).getPrecio())>=pmenor && Integer.parseInt(lista_articulos.get(i).getPrecio())<=pmayor) articulos_final.add(lista_articulos.get(i));
                     
                 }
 
@@ -714,11 +734,11 @@ public class Controlador extends HttpServlet {
                     for (int j = 0; j < lista_comentarios3.size(); j++) {
                         
                         
-                        System.out.println("Seba homo1");
+                        
                         
                         if(lista_comentarios3.get(j).getAutor().getId()==aux_us.getId() || lista_comentarios3.get(j).getArticulo().getPropietario().getId()==aux_us.getId()){
                             lista_comentarios_final.add(lista_comentarios3.get(j));
-                            System.out.println("seba hhomo2");
+                            
                             
                         }
                         
@@ -743,9 +763,61 @@ public class Controlador extends HttpServlet {
             break;
             
                 
+            case "/nueva_pass":
+                
+                String mail_pwd = request.getParameter("email_enviar");
+                TypedQuery<Usuarios> query5 = em.createNamedQuery("Usuarios.findByEmail", Usuarios.class);
+                query5.setParameter("emailUnicidad", mail_pwd);  
+                List<Usuarios> resultado_nueva_pwd= query5.getResultList();
+                
+                if(resultado_nueva_pwd.size()>0){
+                    
+                        try {
+                            Usuarios user_reset = resultado_nueva_pwd.get(0);
+
+                            Random rnd = new Random();
+                            rnd.setSeed(System.currentTimeMillis());
+                            String nueva_pass="";
+
+                            for(int i=0; i<5;i++){
+                                nueva_pass=nueva_pass+rnd.nextInt(9);
+                            }
+
+                            MessageDigest md = MessageDigest.getInstance("SHA-256");
+                            md.update(nueva_pass.getBytes());
+                            byte byteData[] = md.digest();
+                            StringBuffer sb = new StringBuffer();
+                            for (int i = 0; i < byteData.length; i++) {
+                                sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+                            }
+                            String pass_digest2 = sb.toString();
+
+                            user_reset.setPassword(pass_digest2);
+                            merge(user_reset);
+                            
+                            //ENVIAR EL EMAIL
+                            
+                            
+                            //FIN ENVIAR MAIL
+
+                            
+
+                        } catch (NoSuchAlgorithmException ex) {
+                            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+ 
+                    
+                }
+                
+            session.removeAttribute("wrong_user");
+            vista="/controlador/home";  
+                
+                
+            break;
+                
             case "/validarEmail" :
                 String mailAUX = request.getParameter("emailValidar");
-                TypedQuery<Usuarios> query4 = em.createNamedQuery("Usuarios.findEmail", Usuarios.class);
+                TypedQuery<Usuarios> query4 = em.createNamedQuery("Usuarios.findByEmail", Usuarios.class);
                 query4.setParameter("emailUnicidad", mailAUX);  
                 List<Usuarios> result4= query4.getResultList();
                 int malAUX;
@@ -821,4 +893,14 @@ public class Controlador extends HttpServlet {
         }
     }
 
+    public void merge(Object object) {
+        try {
+            utx.begin();
+            em.merge(object);
+            utx.commit();
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            throw new RuntimeException(e);
+        }
+    }
 }

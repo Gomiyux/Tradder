@@ -18,8 +18,10 @@
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
    
    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.5.4/css/bootstrap-slider.min.css" rel="stylesheet" />
+   <link href="/COQUEBA/assets/css/bootstrap-slider.min.css" rel="stylesheet" />
    <link href="https://fonts.googleapis.com/css?family=Vampiro+One" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Chewy" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Chewy" rel="stylesheet">
+       
 </head>
 <body>
     <div id="wrapper">
@@ -243,7 +245,7 @@
     <script src="/COQUEBA/assets/js/bootstrap.min.js"></script>
     <!-- METISMENU SCRIPTS -->
     <script src="/COQUEBA/assets/js/jquery.metisMenu.js"></script>
-
+    <script src="/COQUEBA/assets/js/bootstrap-slider.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.5.4/bootstrap-slider.min.js"></script>
     
     <!-- CUSTOM SCRIPTS -->

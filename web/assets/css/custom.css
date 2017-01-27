@@ -438,3 +438,22 @@ li>a>.glyphicon:before { margin-right: 15px; }
     
     font-size: 1.4em;
 }
+
+@font-face {
+  font-family: Vampiro One;
+  src: local("HVampiroOne Regular"),
+       local("../fonts/VampiroOne-Regular"),
+       url(../fonts/VampiroOne-Regular.ttf);
+  font-weight: Regular;
+}
+
+
+
+@font-face {
+  font-family: Chewy;
+  src: local("Chewy"),
+       local("../fonts/Chewy"),
+       url(../fonts/Chewy.ttf);
+  font-weight: cursive;
+}
+

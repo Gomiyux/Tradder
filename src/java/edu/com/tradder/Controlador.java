@@ -75,7 +75,7 @@ public class Controlador extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, MessagingException {
         String accion;
         accion = request.getPathInfo();
         String vista;
@@ -797,17 +797,63 @@ public class Controlador extends HttpServlet {
                             
                             //ENVIAR EL EMAIL
                             
-                            
+                                 
+                                         Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+                                        final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
+
+                                        // Get a Properties object
+                                        Properties props = System.getProperties();
+                                        props.setProperty("mail.smtps.host", "smtp.gmail.com");
+                                        props.setProperty("mail.smtp.socketFactory.class", SSL_FACTORY);
+                                        props.setProperty("mail.smtp.socketFactory.fallback", "false");
+                                        props.setProperty("mail.smtp.port", "465");
+                                        props.setProperty("mail.smtp.socketFactory.port", "465");
+                                        props.setProperty("mail.smtps.auth", "true");
+
+                                        /*
+                                        If set to false, the QUIT command is sent and the connection is immediately closed. If set 
+                                        to true (the default), causes the transport to wait for the response to the QUIT command.
+
+                                        ref :   http://java.sun.com/products/javamail/javadocs/com/sun/mail/smtp/package-summary.html
+                                                http://forum.java.sun.com/thread.jspa?threadID=5205249
+                                                smtpsend.java - demo program from javamail
+                                        */
+                                        props.put("mail.smtps.quitwait", "false");
+
+                                        //Session.getInstance(props, null);
+                                         Session session2 = Session.getDefaultInstance(props);
+
+                                        // -- Create a new message --
+                                        final MimeMessage msg = new MimeMessage(session2.getInstance(props, null));
+
+                                        // -- Set the FROM and TO fields --
+                                        msg.setFrom(new InternetAddress("traddershop@gmail.com"));
+                                        msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mail_pwd, false));
+
+                                        /*if (ccEmail.length() > 0) {
+                                            msg.setRecipients(Message.RecipientType.CC, InternetAddress.parse(ccEmail, false));
+                                        }*/
+
+                                        msg.setSubject("Tradder Nueva Password");
+                                        msg.setText("Su nueva contraseña es"+nueva_pass, "utf-8");
+                                        msg.setSentDate(new Date());
+
+                                        SMTPTransport t = (SMTPTransport)session2.getTransport("smtps");
+
+                                        t.connect("smtp.gmail.com", "traddershop@gmail.com", "panturrana");
+                                        t.sendMessage(msg, msg.getAllRecipients());      
+                                        t.close();
+                        
                             //FIN ENVIAR MAIL
 
                             
 
-                        } catch (NoSuchAlgorithmException ex) {
+                }  catch (NoSuchAlgorithmException ex) {
                             Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
                         }
  
                     
-                }
+                }   
                 
             session.removeAttribute("wrong_user");
             vista="/controlador/home";  
@@ -855,7 +901,11 @@ public class Controlador extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (MessagingException ex) {
+            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -869,7 +919,11 @@ public class Controlador extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (MessagingException ex) {
+            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

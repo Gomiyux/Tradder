@@ -19,7 +19,7 @@
         <!-- CUSTOM STYLES-->
     <link href="/COQUEBA/assets/css/custom.css" rel="stylesheet" />
      <!-- GOOGLE FONTS-->
-   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'/> 
    <link href="https://fonts.googleapis.com/css?family=Vampiro+One" rel="stylesheet">
  <link href="https://fonts.googleapis.com/css?family=Chewy" rel="stylesheet">
    
@@ -186,13 +186,13 @@
                                 </div>
                                 <div class="tab-pane fade" id="quien-pills">
                                     <h4 style="font-weight: bold;font-family: 'Chewy', cursive;font-size: 2em;">¿Quiénes somos?</h4>
-                                    <p>Somos una tienda online española de hardware especializada en la venta de componentes para PCs, fundada en 2016.
-                                    Esperamos poder satisfacer todas vuestras compras de hardware al mejor precio.</p>
+                                    <p>Somos una plataforma online de venta de segunda mano española especializada en la venta de componentes para PCs, fundada en 2016.
+                                    Esperamos poder satisfacer todas vuestras necesidades.</p>
                                 </div>
                                 <div class="tab-pane fade" id="vendemos-pills">
-                                    <h4 style="font-weight: bold;font-family: 'Chewy', cursive;font-size: 2em;">¿Qué vendemos?</h4>
-                                    <p>Vendemos todo lo relacionado con el hardware desde procesadores hasta cajas para montar nuestro PC. Ahora mismo solo disponemos de tres apartados los
-                                    cuales son: Graficas, Cajas y Procesadores. Poco a poco iremos rellenando nuestro inventario y abarcando mas tipos de productos.</p>
+                                    <h4 style="font-weight: bold;font-family: 'Chewy', cursive;font-size: 2em;">¿Qué se vende?</h4>
+                                    <p>Se vendo todo lo relacionado con el hardware desde procesadores hasta cajas para montar nuestro PC. Ahora mismo solo existen tres categorias, las
+                                    cuales son: Graficas, Procesadores y Otros. Poco a poco iremos añadiendo categorias y abarcando mas tipos de productos.</p>
                                 </div>
                                 <div class="tab-pane fade" id="contacto-pills">
                                     <h4 style="font-weight: bold;font-family: 'Chewy', cursive; font-size: 2em;">Contacto</h4>

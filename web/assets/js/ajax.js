@@ -158,7 +158,7 @@ function nueva_contraseña(){
     init_ajax();
     var url = "nueva_pass";
     xhr.open("POST", url, true);
-    xhr.onreadystatechange = fin_nueva_contraseña;
+    xhr.onreadystatechange = fin_nueva_contrasena;
     
     var email_enviar =document.getElementById("new_pass_email").value;
     
@@ -169,13 +169,17 @@ function nueva_contraseña(){
     
     }
     
- function fin_nueva_contraseña(){
+ function fin_nueva_contrasena(){
     
     if (xhr.readyState === 4) {
         if (xhr.status === 200) {
             
+                document.getElementById("new_pass_email").value="";
+                $('#exampleModal').modal('hide');
+                document.getElementById("mal_user").classList.remove("alert-danger");
+                document.getElementById("mal_user").classList.add("alert-success");
+                document.getElementById("mal_user").innerHTML="Se le ha enviado la nueva contraseña a su correo, por favor revise la bandeja de entrada";
                 
-            
         }
     }   
 }

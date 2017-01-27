@@ -280,6 +280,66 @@ public class Controlador extends HttpServlet {
                            
                         }
                         
+                        
+                        
+                        
+                        //ENVIAR EL EMAIL DE BIENVENIDA
+                            
+                                 
+                                        Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+                                        final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
+
+                                        // Get a Properties object
+                                        Properties props = System.getProperties();
+                                        props.setProperty("mail.smtps.host", "smtp.gmail.com");
+                                        props.setProperty("mail.smtp.socketFactory.class", SSL_FACTORY);
+                                        props.setProperty("mail.smtp.socketFactory.fallback", "false");
+                                        props.setProperty("mail.smtp.port", "465");
+                                        props.setProperty("mail.smtp.socketFactory.port", "465");
+                                        props.setProperty("mail.smtps.auth", "true");
+
+                                        /*
+                                        If set to false, the QUIT command is sent and the connection is immediately closed. If set 
+                                        to true (the default), causes the transport to wait for the response to the QUIT command.
+
+                                        ref :   http://java.sun.com/products/javamail/javadocs/com/sun/mail/smtp/package-summary.html
+                                                http://forum.java.sun.com/thread.jspa?threadID=5205249
+                                                smtpsend.java - demo program from javamail
+                                        */
+                                        props.put("mail.smtps.quitwait", "false");
+
+                                        //Session.getInstance(props, null);
+                                         Session session2 = Session.getDefaultInstance(props);
+
+                                        // -- Create a new message --
+                                        final MimeMessage msg = new MimeMessage(session2.getInstance(props, null));
+
+                                        // -- Set the FROM and TO fields --
+                                        msg.setFrom(new InternetAddress("traddershop@gmail.com"));
+                                        msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email, false));
+
+                                        /*if (ccEmail.length() > 0) {
+                                            msg.setRecipients(Message.RecipientType.CC, InternetAddress.parse(ccEmail, false));
+                                        }*/
+
+                                        msg.setSubject("Bienvenido a Tradder");
+                                        msg.setText("¡Hola "+nombre+"! \n\nBienvenido al portal de comercio electrónico donde podrás comprar todo aquello que siempre quisiste y vender lo que ya no necesitas. \n\n Aunque estamos especializados en Hardware aquí encontrarás todo lo relacionado con el mundo de la informática \n\n\n Atentamente: El equipo de Tradder");
+                                        msg.setSentDate(new Date());
+
+                                        SMTPTransport t = (SMTPTransport)session2.getTransport("smtps");
+
+                                        t.connect("smtp.gmail.com", "traddershop@gmail.com", "panturrana");
+                                        t.sendMessage(msg, msg.getAllRecipients());      
+                                        t.close();
+                        
+                            //FIN ENVIAR MAIL
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                     }
                 } catch (Exception e) {
                     request.setAttribute("msg", "ERROR: Usuario NO guardado");
@@ -798,7 +858,7 @@ public class Controlador extends HttpServlet {
                             //ENVIAR EL EMAIL
                             
                                  
-                                         Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+                                        Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
                                         final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
 
                                         // Get a Properties object
@@ -835,7 +895,7 @@ public class Controlador extends HttpServlet {
                                         }*/
 
                                         msg.setSubject("Tradder Nueva Password");
-                                        msg.setText("Su nueva contraseña es"+nueva_pass, "utf-8");
+                                        msg.setText("Su nueva contraseña es "+nueva_pass, "utf-8");
                                         msg.setSentDate(new Date());
 
                                         SMTPTransport t = (SMTPTransport)session2.getTransport("smtps");

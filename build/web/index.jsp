@@ -118,7 +118,7 @@
                     <div class="col-md-12">
                      <h2 style="font-family: 'Chewy', cursive;" >Home</h2>   
                      <c:if test="${applicationScope.wrong_user!=null}">
-                         <div class="alert alert-danger" id="articulo_publicado" role="alert">¡Vaya, parece que no existe esa combinación de usuario y contraseña! 
+                         <div class="alert alert-danger" id="mal_user" role="alert">¡Vaya, parece que no existe esa combinación de usuario y contraseña! 
                              <strong>
                                  <button style="margin-left: 10px;" type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Recuperar Contraseña</button>
                              
